@@ -24,6 +24,7 @@ module.exports = {
   collectCoverageFrom: [
     "**/*.{js,jsx}",
     "!**/node_modules/**",
+    "!**/dist/**",
     "!**/vendor/**",
     '!**/*.eslintrc.js',
     '!**/coverage/**',

@@ -1,10 +1,13 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import App from '../src/components/index';
+import { shallow } from 'enzyme';
+import App from '../src/components/App';
 
 describe('Render root app component', () => {
     it('should render the root app component successfully', () => {
-        const wrapper = mount(<App/>);
-        expect(wrapper.text()).toEqual('You are welcome at Barefoot nomad');   
+        const wrapper = shallow(<App/>);
+        expect(wrapper.find('Router').length).toBe(0);
+        expect(wrapper.find('Switch').length).toBe(1);
+        expect(wrapper.find('Route').length).toBe(2);
+        
     })
 })
