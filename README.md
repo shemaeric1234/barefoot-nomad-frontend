@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/andela/blackninjas-frontend.svg?branch=develop)](https://travis-ci.org/andela/blackninjas-frontend)
 # Barefoot Nomad (Front-end)
 
 
