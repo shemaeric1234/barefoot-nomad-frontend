@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/andela/blackninjas-frontend.svg?branch=develop)](https://travis-ci.org/andela/blackninjas-frontend)
+[![Maintainability](https://api.codeclimate.com/v1/badges/486442ae51367b66b4d2/maintainability)](https://codeclimate.com/github/andela/blackninjas-frontend/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/486442ae51367b66b4d2/test_coverage)](https://codeclimate.com/github/andela/blackninjas-frontend/test_coverage)
 # Barefoot Nomad (Front-end)
 
 
