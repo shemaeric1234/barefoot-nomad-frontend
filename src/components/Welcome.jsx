@@ -7,6 +7,7 @@ class Welcome extends Component {
         <div>
             <h1>You are welcome at Barefoot nomad</h1>
 			<Link to='/login'><h1>Click me to login</h1></Link>
+            <Link to='/redux'><h1>Click check redux</h1></Link>
 		</div>
         );
     }
