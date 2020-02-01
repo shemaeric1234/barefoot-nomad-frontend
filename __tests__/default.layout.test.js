@@ -5,6 +5,6 @@ import DefaultLayout from '../src/layouts/default.layout.jsx';
 describe('Render default layout', () => {
     it('should render default layout successfully', () => {
         const wrapper = mount(<DefaultLayout/>);
-        expect(wrapper.find('div').length).toBe(2);
+        expect(wrapper.find('div').length).toBe(1);
     })
 })
