@@ -32,7 +32,8 @@ describe('Render password  components', () => {
 		const component = setUpComponent();
 		const handleSubmitSpy = jest.spyOn(component.instance(), 'handleSubmit');
 		component
-			.find('[data-test="forgot-btn"]').at(4)
+			.find('[data-test="forgot-btn"]')
+			.at(4)
 			.simulate('submit', { preventDefault() {} });
 		expect(handleSubmitSpy).toBeDefined();
 	});
@@ -48,12 +49,13 @@ describe('Render password  components', () => {
 	});
 	it('should map state to props', () => {
 		expect(mapStateToProps);
-		const state ={
-			passwordReducer:{
-				forgotMessage:'email sent',
-				isLoading:true,
-				forgotMessageError:'user not found'
-			}}
+		const state = {
+			passwordReducer: {
+				forgotMessage: 'email sent',
+				isLoading: true,
+				forgotMessageError: 'user not found',
+			},
+		};
 
 		const stateObject = mapStateToProps(state);
 		expect(stateObject).toBeTruthy();
@@ -64,10 +66,20 @@ describe('Render forgot components', () => {
 	it('should be disabled function', () => {
 		const wrapper = mount(<ForgotPassword {...props} />);
 		wrapper.setState({
-      email:'mujohn25@gmail.com'
+			email: 'mujohn25@gmail.com',
 		});
 		const handleSubmitSpy = jest.spyOn(wrapper.instance(), 'shouldBeDisabled');
-		
-			wrapper.instance().shouldBeDisabled();
+
+		wrapper.instance().shouldBeDisabled();
+	});
+
+	it('should handle componentDidUpdate successfully', () => {
+		const component = setUpComponent();
+		const handleChangeSpy = jest.spyOn(
+			component.instance(),
+			'componentDidUpdate',
+		);
+		component.setProps({ forgotMessage: 'invalid' });
+		expect(handleChangeSpy).toBeDefined();
 	});
 });
