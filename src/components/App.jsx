@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import Welcome from './Welcome.jsx';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import WelcomePage from '../views/WelcomePage';
-import LoginPage from '../views/LoginPage';
-import HomeRedux from '../views/HomeRedux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import DefaultLayout from '../layouts/default.layout.jsx';
+import MainLayout from '../layouts/main.layout.jsx';
+
 class App extends Component {
 	render() {
 		return (
-			<div className='index'>
+			<div className='app'>
 				<Router>
 					<Switch>
-						<Route path='/' exact component={WelcomePage} />
-						<Route path='/login' exact component={LoginPage} />
-						<Route path='/redux' exact component={HomeRedux} />
+						<Route path='/' exact component={MainLayout} />
+						<Route path='/auth' component={DefaultLayout} />
 					</Switch>
 				</Router>
 			</div>
