@@ -4,6 +4,7 @@ import DefaultLayout from '../layouts/default.layout.jsx';
 import MainLayout from '../layouts/main.layout.jsx';
 import { PrivateRoute } from '../components/auth/ProtectedRoute.jsx';
 class App extends Component {
+	
 	render() {
 		return (
 			<div className='app'>
