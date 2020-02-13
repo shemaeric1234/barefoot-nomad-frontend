@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DefaultLayout from '../layouts/default.layout.jsx';
 import MainLayout from '../layouts/main.layout.jsx';
 import { PrivateRoute } from '../components/auth/ProtectedRoute.jsx';
+
+
 class App extends Component {
 	render() {
 		return (
@@ -11,6 +13,7 @@ class App extends Component {
 					<Switch>
 						<Route path='/auth' component={DefaultLayout} />
 						<PrivateRoute path='/' component={MainLayout} />
+
 					</Switch>
 				</Router>
 			</div>

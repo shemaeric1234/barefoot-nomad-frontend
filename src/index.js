@@ -9,11 +9,11 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 
 ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </MuiThemeProvider>,
-    document.getElementById('root')
+	<MuiThemeProvider theme={theme}>
+		<CssBaseline />
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</MuiThemeProvider>,
+	document.getElementById('root'),
 );
