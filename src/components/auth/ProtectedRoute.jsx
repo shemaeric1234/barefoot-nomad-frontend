@@ -20,8 +20,8 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
          <Route
             {...rest}
             render={props => {
-               const v = verifyToken(getToken());
-               return (v) ? (<Component {...props} />) : (history.push('/auth/signin'));
+               const decodedToken = verifyToken(getToken());
+               return (decodedToken) ? (<Component {...props} />) : (history.push('/auth/signin'));
             }
             }
          />

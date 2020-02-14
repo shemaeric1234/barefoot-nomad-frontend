@@ -26,7 +26,9 @@ export const props = {
         paper: "",
         form: "",
         submit: "",
-        link: ""
+        link: "",
+        socialauth: "",
+        aanchor_tags_class: ""
     },
     signIn: jest.fn(),
     logout: jest.fn()

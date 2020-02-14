@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { signIn, logout, history } from '../../actions/signInAction';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { formUseStyles } from '../../styles/login/loginStyle.js';
+import SocialAuth from '../auth/SocialLogin.jsx';
 
 
 export class LoginForm extends Component {
@@ -86,7 +87,7 @@ export class LoginForm extends Component {
 						</Button>): <CircularProgress />}
             {/* {redirect ? history.push('/') : null} */}
 						<Typography variant='h6' color='textSecondary'>	{' '}	Or{' '}	</Typography>
-						<div > Social Auth </div>
+						<SocialAuth />
 						<Typography variant='subtitle2' color='textSecondary'>	Don't have an account yet?{' '}
 							<Link to='/auth/signup' variant='body2' className={classes.link}>	{'Sign Up'}	</Link>
 							<br /> <br />	By signing in or creating an account, you agree with our{' '}
