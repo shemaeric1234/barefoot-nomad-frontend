@@ -7,7 +7,6 @@ class DefaultLayout extends PureComponent {
     render() {
         return (
             <div>
-                <div>DefaultLayout</div>
                 <Router>
                     <Switch>
                         <Route exact path='/auth'>

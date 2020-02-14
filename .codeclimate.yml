@@ -12,3 +12,5 @@ checks:
   method-lines:
     config:
       threshold: 60
+exclude_patterns:
+  - "__tests__"  
