@@ -55,7 +55,11 @@ module.exports = {
     "lcov",
     "clover"
   ],
-
+  coveragePathIgnorePatterns: [
+    "/node_modules/",	  
+    "/__tests__",	  
+    "/src/styles/"
+  ],	  
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
 

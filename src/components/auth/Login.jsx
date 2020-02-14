@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import { Link } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -76,7 +76,7 @@ export class LoginForm extends Component {
 								<Typography component='h1' variant='subtitle2' color='error'>	Password is required </Typography>	)}
 						</div>
 						<Typography component='h2' variant='subtitle1' align='left'>
-							<Link	to='/forgot-password'	variant='body2'	className={classes.link}>	Forgot password?</Link>
+							<Link	to='forgot-password' variant='body2'	className={classes.link}>	Forgot password?</Link>
 						</Typography>
 						{this.props.stateObject.signInReducer.error ? (
 							<Typography component='h1' variant='subtitle2' color='error'>	{' '}
