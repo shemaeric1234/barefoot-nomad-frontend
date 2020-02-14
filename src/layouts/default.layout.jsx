@@ -1,13 +1,14 @@
   
 import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import Signup from '../views/signup.view.jsx';
+import Signup from '../views/signup/signup.view.jsx';
 import Signin from '../views/signin.view.jsx';
 import ForgotPassword from '../views/passwordReset/ForgotPassword';
 import ResetPassword from '../views/passwordReset/ResetPassword ';
 import ResetNotification from '../components/password/passwordNotification.jsx';
 import {ResetNofiticationSucess} from '../components/password/passwordNotification.jsx';
-
+import Confirm from '../views/signup/confirm.view.jsx';
+import ActivateUser from '../views/signup/activate_user.view.jsx';
 
 class DefaultLayout extends PureComponent {
     render() {
@@ -24,9 +25,8 @@ class DefaultLayout extends PureComponent {
                         <Route path='/auth/reset-notification-sucess' exact component={ResetNofiticationSucess}/> 
                         <Route path='/auth/signup' component={Signup} />
                         <Route path='/auth/signin' component={Signin} />
-
-                        
-                  
+                        <Route path='/auth/confirm' component={Confirm} />
+                        <Route path='/auth/activate' component={ActivateUser} />
                     </Switch>
                 </Router>
             </div>
