@@ -11,6 +11,7 @@ import { signIn, logout, history } from '../../actions/signInAction';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { formUseStyles } from '../../styles/login/loginStyle.js';
 import SocialAuth from '../auth/SocialLogin.jsx';
+import Box  from '@material-ui/core/Box';
 
 
 export class LoginForm extends Component {
@@ -56,7 +57,8 @@ export class LoginForm extends Component {
 						Sign in to access the full features of Barefoot Nomad.
 					</Typography>
 					<br />
-					<form className={classes.form} onSubmit={this.handleSubmit}>
+					<Box pt={1} pb={1}>
+					<form onSubmit={this.handleSubmit}>
 						<Typography
 							component='h1' variant='h6' color='textSecondary'	align='left'	>	{' '}	Email{' '}
 						</Typography>
@@ -85,15 +87,15 @@ export class LoginForm extends Component {
             {!this.props.isLoading ?  (<Button type='submit'	fullWidth	variant='contained'	color='primary'	data-test='login-btn'	className={classes.submit} disabled={!password  || !email && true} >
 							Sign In
 						</Button>): <CircularProgress />}
-            {/* {redirect ? history.push('/') : null} */}
 						<Typography variant='h6' color='textSecondary'>	{' '}	Or{' '}	</Typography>
 						<SocialAuth />
 						<Typography variant='subtitle2' color='textSecondary'>	Don't have an account yet?{' '}
-							<Link style={{ textDecoration: 'none' }} href='/auth/signup' variant='body2' className={classes.link}>	{'Sign Up'}	</Link>
+							<Link to='signup' variant='body2' className={classes.link}>	{'Sign Up'}	</Link>
 							<br /> <br />	By signing in or creating an account, you agree with our{' '}
 							<Link href='#' variant='body2' className={classes.link}>	{'Terms & Conditions and Privacy Statement'}	</Link>
 						</Typography>
 					</form>
+					</Box>
 				</div>
 				<Footer />
 			</Container>

@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { viewUseStyles } from '../styles/login/loginStyle.js';
+import Box  from '@material-ui/core/Box';
 
 export class SignIn extends PureComponent {
 	constructor(props) {
@@ -35,13 +36,18 @@ export class SignIn extends PureComponent {
 					<Grid item xs={4}>
 						<Paper className={classes.paper}>
 							{' '}
-							<LoginForm />
+							<Box width={441}> <LoginForm /> </Box>
 						</Paper>
 					</Grid>
 				</Grid>
 				<Container fixed className={classes.phoneContent}>
 					<Paper className={classes.paper}>
 						{' '}
+						<img
+							src='https://res.cloudinary.com/drpye5niv/image/upload/v1580822689/barefoot_nomad_logo_xvfgsp.png'
+							width='20%'
+							height='10%'
+						/>
 						<LoginForm />
 					</Paper>{' '}
 				</Container>
