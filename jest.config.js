@@ -58,7 +58,8 @@ module.exports = {
   coveragePathIgnorePatterns: [
     "/node_modules/",	  
     "/__tests__",	  
-    "/src/styles/"
+    "/src/styles/",
+    "server.js"
   ],	  
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
