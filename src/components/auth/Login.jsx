@@ -89,7 +89,7 @@ export class LoginForm extends Component {
 						<Typography variant='h6' color='textSecondary'>	{' '}	Or{' '}	</Typography>
 						<SocialAuth />
 						<Typography variant='subtitle2' color='textSecondary'>	Don't have an account yet?{' '}
-							<Link to='/auth/signup' variant='body2' className={classes.link}>	{'Sign Up'}	</Link>
+							<Link style={{ textDecoration: 'none' }} href='/auth/signup' variant='body2' className={classes.link}>	{'Sign Up'}	</Link>
 							<br /> <br />	By signing in or creating an account, you agree with our{' '}
 							<Link href='#' variant='body2' className={classes.link}>	{'Terms & Conditions and Privacy Statement'}	</Link>
 						</Typography>

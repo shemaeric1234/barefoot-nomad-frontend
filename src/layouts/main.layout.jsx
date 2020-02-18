@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
-import queryString from 'query-string';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import React from 'react';
 
-const MainLayout = (props) => {
+const MainLayout = ({ match }) => {
 
     return (
-        <div>
-            MainLayout
-        </div>
+        <div></div>
     );
 }
 
