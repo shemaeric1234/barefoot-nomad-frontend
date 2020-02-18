@@ -6,6 +6,8 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common');
+const webpack = require('webpack');
+require('dotenv').config();
 
 module.exports = merge(common, {
 	mode: 'production',
@@ -29,6 +31,11 @@ module.exports = merge(common, {
 		],
 	},
 	plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                BACKEND_BASE_URL: JSON.stringify(process.env.BACKEND_BASE_URL),
+            },
+        }),
 		new MiniCssExtractPlugin({ filename: '[name].[contentHash].css' }),
 		new CleanWebpackPlugin(),
 	],
