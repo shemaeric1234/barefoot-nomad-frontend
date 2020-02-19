@@ -8,13 +8,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common');
 const webpack = require('webpack');
 require('dotenv').config();
-
 module.exports = merge(common, {
 	mode: 'production',
 	output: {
 		filename: '[name].[contentHash].bundle.js',
 		path: path.resolve(__dirname, 'dist/'),
-		publicPath: '/'
+		publicPath: '/',
 	},
 	optimization: {
 		minimizer: [
@@ -31,11 +30,16 @@ module.exports = merge(common, {
 		],
 	},
 	plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                BACKEND_BASE_URL: JSON.stringify(process.env.BACKEND_BASE_URL),
-            },
-        }),
+		new webpack.DefinePlugin({
+			'process.env': {
+				BACKEND_BASE_URL: JSON.stringify(process.env.BACKEND_BASE_URL),
+				CLOUDINARY_URL: JSON.stringify(process.env.CLOUDINARY_URL),
+				PROFILE_UPLOADER_URL: JSON.stringify(process.env.PROFILE_UPLOADER_URL),
+				DEFAULT_PROFILE_IMAGE_URL: JSON.stringify(
+					process.env.DEFAULT_PROFILE_IMAGE_URL,
+				),
+			},
+		}),
 		new MiniCssExtractPlugin({ filename: '[name].[contentHash].css' }),
 		new CleanWebpackPlugin(),
 	],

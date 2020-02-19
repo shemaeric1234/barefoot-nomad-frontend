@@ -39,13 +39,14 @@ describe('Render resetPassword  components', () => {
 	it('should handle submit successfully', () => {
 		const component = setUpComponent();
 		component.setState({
-			isPasswordValid:true,
-			isMatching:true,
-			passwordError:'not matching'
-		})
+			isPasswordValid: true,
+			isMatching: true,
+			passwordError: 'not matching',
+		});
 		const handleSubmitSpy = jest.spyOn(component.instance(), 'handleSubmit');
 		component
-			.find('[data-test="reset-btn"]').at(4)
+			.find('[data-test="reset-btn"]')
+			.at(4)
 			.simulate('submit', { preventDefault() {} });
 		expect(handleSubmitSpy).toBeDefined();
 	});
@@ -70,23 +71,23 @@ describe('Render resetPassword  components', () => {
 			.simulate('blur', { target: { name: 'password' } });
 		component
 			.find('[data-test="reset-confirm-password-field"]')
-			.simulate('blur', { target: { name: 'confirmPassword'} });
+			.simulate('blur', { target: { name: 'confirmPassword' } });
 		expect(handleChangeSpy).toBeDefined();
 	});
 	it('should map state to props', () => {
 		expect(mapStateToProps);
 
-		const state ={
-			passwordReducer:{
-				resetMessage:'email sent',
-				isLoading:true,
-			}}
+		const state = {
+			passwordReducer: {
+				resetMessage: 'email sent',
+				isLoading: true,
+			},
+		};
 
 		const stateObject = mapStateToProps(state);
 		expect(stateObject).toBeTruthy();
 	});
 });
-
 
 describe('Render resetPassword  components', () => {
 	it('should throw an error on unmatched password', () => {
@@ -96,8 +97,18 @@ describe('Render resetPassword  components', () => {
 			confirmPassword: 'mujohn25',
 		});
 		const handleSubmitSpy = jest.spyOn(wrapper.instance(), 'validate');
-		
-			wrapper.instance().validate('confirmPassword','mujohn25');
+
+		wrapper.instance().validate('confirmPassword', 'mujohn25');
 		expect(handleSubmitSpy).toBeDefined();
+	});
+
+	it('should handle componentDidUpdate successfully', () => {
+		const component = setUpComponent();
+		const handleChangeSpy = jest.spyOn(
+			component.instance(),
+			'componentDidUpdate',
+		);
+		component.setProps({ resetMessage: 'invalid' });
+		expect(handleChangeSpy).toBeDefined();
 	});
 });
