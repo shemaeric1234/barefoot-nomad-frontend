@@ -47,16 +47,19 @@ export const uploadNewImageOnCloud = data => async dispatch => {
 		.post(process.env.CLOUDINARY_URL, data)
 		.then(async res => {
 			const imageURL = { profileImage: res.data.secure_url };
-
 			dispatch({
 				type: UPLOAD_IMAGE_SUCCESS,
 				attribute: imageURL,
 			});
 		})
 		.catch(error => {
+			const errorData = {
+				errorMessage: 'Fail to upload image please try again',
+				updateStatus: false,
+			};
 			dispatch({
 				type: ERROR_UPLOAD_IMAGE,
-				attribute: { errorMessage: 'Fail to upload image please try again' },
+				attribute: errorData,
 			});
 		});
 };
@@ -71,6 +74,7 @@ export const updateUserProfile = data => async dispatch => {
 				? res.data
 				: { data: { errorMessage: 'Update fail please try again' } };
 			response.data.updateStatus = 'true';
+			response.data.errorMessage = false;
 			dispatch({
 				type: UPDATE_USER_PROFILE,
 				updatedProfile: response.data,
