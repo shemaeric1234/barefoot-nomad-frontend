@@ -70,6 +70,17 @@ describe('edit user profile', () => {
 			expect(result[0].type).toEqual('GET_USER_PROFILE');
 		});
 	});
+	it('should get user who has empty birth date', async () => {
+		moxios.wait(() => {
+			const request = moxios.requests.mostRecent();
+			request.respondWith(succussMockData);
+		});
+		const store = mockStore({});
+		await store.dispatch(GetUserProfile()).then(async () => {
+			const result = store.getActions();
+			expect(result[0].type).toEqual('GET_USER_PROFILE');
+		});
+	});
 
 	it('should update user profile ', async () => {
 		moxios.wait(() => {
@@ -103,6 +114,52 @@ describe('edit user profile', () => {
 			country: 'United Arab Emirates',
 			gender: 'Male',
 			birthdate: '2003-07-18',
+			preferredlanguage: 'Swahili',
+			preferredcurrency: 'dolla ',
+			place: 'kigali',
+			department: 'software ',
+			profileImage:
+				'https://res.cloudinary.com/dby88h516/image/upload/v1581418901/barefootnomad/r6qshqeaxqdlyhmnmhtr.jpg',
+			appNotification: true,
+			emailNotification: false,
+		};
+		const store = mockStore({});
+		await store.dispatch(updateUserProfile(body)).then(async () => {
+			expect(store.getActions()[0].type).toEqual('UPDATE_USER_PROFILE');
+		});
+	});
+	it('should update user profile  who has authonticated by social media', async () => {
+		moxios.wait(() => {
+			const request = moxios.requests.mostRecent();
+			request.respondWith({
+				status: 200,
+				message: 'User Profile',
+				data: {
+					email: 'ricshama@gmail.com',
+					firstName: 'shema',
+					lastName: 'Eric',
+					country: 'United Arab Emirates',
+					gender: 'Male',
+					birthdate: '',
+					preferredlanguage: 'Swahili',
+					preferredcurrency: 'dolla ',
+					place: 'kigali',
+					department: 'software ',
+					profileImage:
+						'https://res.cloudinary.com/dby88h516/image/upload/v1581418901/barefootnomad/r6qshqeaxqdlyhmnmhtr.jpg',
+					appNotification: true,
+					emailNotification: false,
+				},
+			});
+		});
+
+		const body = {
+			email: 'ricshama@gmail.com',
+			firstName: 'shema',
+			lastName: 'Eric',
+			country: 'United Arab Emirates',
+			gender: 'Male',
+			birthdate: '',
 			preferredlanguage: 'Swahili',
 			preferredcurrency: 'dolla ',
 			place: 'kigali',

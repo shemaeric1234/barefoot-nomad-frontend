@@ -412,7 +412,7 @@ export class Profile extends Component {
 											<Grid xs={12} md={6} item container>
 												<Grid
 													item
-													style={{ marginLeft: '20%', marginRight: '2%' }}
+													style={{ marginLeft: '19%', marginRight: '2%' }}
 												>
 													{/* <Box pr={2}> */}
 													<Button
