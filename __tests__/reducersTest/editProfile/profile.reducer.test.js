@@ -11,7 +11,7 @@ import {
 } from '../../../__mockData__/redux-mock-data';
 
 describe('edit user profile', () => {
-	it('Should  change Attribute', () => {
+	it('Should change Attribute', () => {
 		const getState = ProfileReducer({}, changeAttribute);
 		expect(getState).toEqual({
 			userProfileInfo: changeAttribute.attribute,
@@ -21,6 +21,7 @@ describe('edit user profile', () => {
 		const getState = ProfileReducer({}, updateUserProfile);
 		expect(getState).toEqual({
 			UpdateduserProfileInfo: updateUserProfile.updatedProfile,
+			userProfileInfo: updateUserProfile.updatedProfile,
 		});
 	});
 
