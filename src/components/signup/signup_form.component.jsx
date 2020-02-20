@@ -266,7 +266,7 @@ export const SignupForm = (props) => {
                     <Grid justify="center" container>
                         <Box pt={3} pb={1}>
                             <Typography variant="body2">
-                                Have an account already? <Link style={{ textDecoration: 'none' }} href="/auth/signin">Sign In</Link>
+                                Have an account already? <Link style={{ textDecoration: 'none', color: '#0094FF' }} href="/auth/signin">Sign In</Link>
                             </Typography>
                         </Box>
                     </Grid>
