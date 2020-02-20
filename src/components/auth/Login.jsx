@@ -65,7 +65,7 @@ export class LoginForm extends Component {
 									fullWidth
 									label='Provide Your email'
 									name='email'
-									size="small"
+									size='small'
 									autoComplete='email'
 									value={this.email}
 									data-test='signin-email'
@@ -87,7 +87,7 @@ export class LoginForm extends Component {
 									required
 									fullWidth
 									name='password'
-									size="small"
+									size='small'
 									label='Provide Your Password'
 									type='password'
 									value={this.password}
@@ -106,7 +106,7 @@ export class LoginForm extends Component {
 								<Link
 									href='/auth/forgot-password'
 									variant='body2'
-									className={classes.link}
+									style={{ textDecoration: 'none', color: '#0094FF' }}
 								>
 									{' '}
 									Forgot password?
@@ -137,17 +137,16 @@ export class LoginForm extends Component {
 								{' '}
 								Or{' '}
 							</Typography>
-							<SocialAuth />
+							<SocialAuth /> <br />
 							<Typography variant='subtitle2' color='textSecondary'>
 								{' '}
 								Don't have an account yet?{' '}
 								<Link
 									href='/auth/signup'
 									variant='body2'
-									className={classes.link}
+									style={{ textDecoration: 'none', color: '#0094FF' }}
 								>
-									{' '}
-									{'Sign Up'}{' '}
+									{'Sign Up'}
 								</Link>
 								<br /> <br /> By signing in or creating an account, you agree
 								with our{' '}
