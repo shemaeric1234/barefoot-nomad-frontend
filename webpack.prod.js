@@ -7,6 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.common');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
 module.exports = merge(common, {
 	mode: 'production',
@@ -42,6 +43,13 @@ module.exports = merge(common, {
 		}),
 		new MiniCssExtractPlugin({ filename: '[name].[contentHash].css' }),
 		new CleanWebpackPlugin(),
+		new Dotenv({
+			path: './.env',
+			safe: true,
+			systemvars: true,
+			silent: true,
+			defaults: false,
+		}),
 	],
 	module: {
 		rules: [

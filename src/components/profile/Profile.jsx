@@ -163,7 +163,7 @@ export class Profile extends Component {
 															heigth: '20px',
 														}}
 													>
-														Update fail please try again
+														Fail to upload image please try again
 													</Alert>
 												)}
 											</Grid>
@@ -407,48 +407,51 @@ export class Profile extends Component {
 											</Grid>
 											<Grid xs={12} md={6} item></Grid>
 										</Grid>
-										<Grid xs={12} spacing={3} justify='center' item container>
+										<Grid xs={12} spacing={3} item container>
 											<Grid xs={12} md={6} item></Grid>
 											<Grid xs={12} md={6} item container>
-												<Grid item>
-													<Box pr={2}>
-														<Button
-															id='cancel'
-															variant='contained'
-															color='secondary'
-															disabled={this.state.buttonState}
-															style={{
-																borderRadius: 0,
-																width: '100%',
-															}}
-															onClick={() => {
-																this.setState({ buttonState: true });
-																this.props.cancelUserUpdate();
-															}}
-														>
-															Cancel
-														</Button>
-													</Box>
+												<Grid
+													item
+													style={{ marginLeft: '20%', marginRight: '2%' }}
+												>
+													{/* <Box pr={2}> */}
+													<Button
+														id='cancel'
+														variant='contained'
+														color='secondary'
+														disabled={this.state.buttonState}
+														style={{
+															borderRadius: 0,
+															width: '100%',
+														}}
+														onClick={() => {
+															this.setState({ buttonState: true });
+															this.props.cancelUserUpdate();
+														}}
+													>
+														Cancel
+													</Button>
+													{/* </Box> */}
 												</Grid>
-												<Grid item>
-													<Box pl={2}>
-														<Button
-															id='update'
-															variant='contained'
-															color='primary'
-															style={{
-																borderRadius: 0,
-																width: '100%',
-															}}
-															disabled={this.state.buttonState}
-															onClick={() => {
-																this.setState({ buttonState: true });
-																this.props.updateUserProfile(userProfileInfo);
-															}}
-														>
-															Update
-														</Button>
-													</Box>
+												<Grid item style={{ float: 'right' }}>
+													{/* <Box pl={2}> */}
+													<Button
+														id='update'
+														variant='contained'
+														color='primary'
+														style={{
+															borderRadius: 0,
+															width: '100%',
+														}}
+														disabled={this.state.buttonState}
+														onClick={() => {
+															this.setState({ buttonState: true });
+															this.props.updateUserProfile(userProfileInfo);
+														}}
+													>
+														Update
+													</Button>
+													{/* </Box> */}
 												</Grid>
 											</Grid>
 										</Grid>

@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-import EditIcon from '@material-ui/icons/Edit';
 import { Divider, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import PersonIcon from '@material-ui/icons/Person';
 
-class NavLinks extends Component {
+const useStyles = theme => ({
+	isActive: {
+		backgroundColor: '#F1F1F1',
+		color: '#2196F3',
+	},
+});
+export class NavLinks extends Component {
 	state = {
 		bgcolor: '#f1f1f1',
 	};
 
 	changeBgColor = () => {
-		this.setState({ bgcolor: '#616161' });
+		this.setState({ bgcolor: '#F1F1F1' });
 	};
 	render() {
+		const { classes } = this.props;
 		return (
 			<Grid
 				container
-				style={{ width: '100%', backgroundColor: '#f1f1f1', marginTop: '15px' }}
+				style={{ width: '100%', backgroundColor: 'white', marginTop: '15px' }}
 			>
 				<Divider />
 				<ListItem button>
@@ -35,7 +40,12 @@ class NavLinks extends Component {
 					</ListItemText>
 				</ListItem>
 				<Divider />
-				<ListItem button>
+				<ListItem
+					button
+					className={
+						window.location.pathname === '/profile' ? classes.isActive : 'null'
+					}
+				>
 					<ListItemIcon>
 						<PersonIcon />
 					</ListItemIcon>
@@ -51,4 +61,4 @@ class NavLinks extends Component {
 	}
 }
 
-export default NavLinks;
+export default withStyles(useStyles)(NavLinks);

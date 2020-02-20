@@ -85,12 +85,17 @@ const userProfileReducer = (state = initialState, action) => {
 
 		case 'UPDATE_USER_PROFILE':
 			const userUpdatedInfo = action.updatedProfile;
+			userUpdatedInfo.birthdate =
+				userUpdatedInfo.birthdate == '1719-01-01'
+					? ''
+					: userUpdatedInfo.birthdate;
 			return {
 				...state,
 				UpdateduserProfileInfo: {
 					...state.UpdateduserProfileInfo,
 					...userUpdatedInfo,
 				},
+				userProfileInfo: { ...state.userProfileInfo, ...userUpdatedInfo },
 			};
 
 		case 'CANCEL_USER_UPDATE':

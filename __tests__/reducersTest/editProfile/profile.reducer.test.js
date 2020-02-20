@@ -21,6 +21,7 @@ describe('edit user profile', () => {
 		const getState = ProfileReducer({}, updateUserProfile);
 		expect(getState).toEqual({
 			UpdateduserProfileInfo: updateUserProfile.updatedProfile,
+			userProfileInfo: updateUserProfile.updatedProfile,
 		});
 	});
 
