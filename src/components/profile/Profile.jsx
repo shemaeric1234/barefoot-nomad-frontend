@@ -163,7 +163,7 @@ export class Profile extends Component {
 															heigth: '20px',
 														}}
 													>
-														Update fail please try again
+														Fail to upload image please try again
 													</Alert>
 												)}
 											</Grid>
