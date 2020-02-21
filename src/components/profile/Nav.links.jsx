@@ -36,7 +36,9 @@ export class NavLinks extends Component {
 						<DirectionsWalkIcon />
 					</ListItemIcon>
 					<ListItemText>
-						<Typography>Trips</Typography>
+						<Link to='/trips' style={{ textDecoration: 'none' }}>
+							<Typography>Trips</Typography>
+						</Link>
 					</ListItemText>
 				</ListItem>
 				<Divider />

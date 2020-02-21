@@ -6,6 +6,7 @@ function TextInput(props) {
         <Box pt={props.pt || 1} pb={props.pb || 1}>
             <TextField
                 required={props.required || true}
+                disabled={props.disabled || false}
                 id={props.id}
                 name={props.name}
                 key={props.id}

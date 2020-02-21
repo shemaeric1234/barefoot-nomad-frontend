@@ -5,19 +5,19 @@ import { ActivateUser, mapStateToProps } from '../../src/views/signup/activate_u
 describe('Render Activate user view', () => {
 
     it('should render activate user successfully', async () => {
-        
+
         mapStateToProps({
             activateUserReducer: {
                 isActivated: false,
                 activateMessage: false,
                 hasRequestMade: false
             },
-            appReducer:{
+            appReducer: {
                 isLoading: false
             }
         })
 
         mount(<ActivateUser isLoading={true} />);
-        mount(<ActivateUser isLoading={true} />);
+        mount(<ActivateUser isLoading={false} />);
     })
 })

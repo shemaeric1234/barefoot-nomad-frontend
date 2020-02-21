@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,6 +10,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SideNavBarPage from '../views/SideNavBar';
 import TopNavBar from '../components/profile/top.nav.bar.jsx';
 import Profile from '../components/profile/Profile.jsx';
+import Requests from '../views/trip_requests/userTripRequests.view.jsx';
+import Request from '../views/trip_requests/userTripRequest.view.jsx';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const drawerWidth = 240;
@@ -64,7 +65,6 @@ const MainLayout = props => {
 	return (
 		<Router>
 			<div className={classes.root}>
-				<CssBaseline />
 				<AppBar
 					position='fixed'
 					style={{ backgroundColor: 'white', boxShadow: `${appBarCss}` }}
@@ -124,6 +124,8 @@ const MainLayout = props => {
 
 					<Switch>
 						<Route path='/profile' exact component={Profile} />
+						<Route path='/trips/:id' component={Request} />
+						<Route path='/trips' component={Requests} />
 					</Switch>
 				</main>
 			</div>
