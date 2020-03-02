@@ -26,7 +26,9 @@ export const handleClose = (setOpen) => {
 };
 
 export const Comments = (props) => {
+
     const classes = useStyles();
+
     const [isEditMode, setIsEditMode] = React.useState(false);
     const [comment, setComment] = React.useState('');
     const [open, setOpen] = React.useState(false);
