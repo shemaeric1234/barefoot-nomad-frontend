@@ -6,6 +6,8 @@ import passwordReducer from './passwordReducer';
 import activateUserReducer from './activateUserReducer';
 import userProfileReducer from './user.profile.reducer';
 import tripRequestsReducers from './trip_requests/tripRequestsReducers';
+import UserSettingReducer from './UserSettingReducer';
+import tripRequestCommentsReducer from './trip_requests/commentsReducers';
 
 export default combineReducers({
 	appReducer,
@@ -15,5 +17,7 @@ export default combineReducers({
 	signupReducer,
 	activateUserReducer,
 	userProfileReducer,
-	tripRequestsReducers
+	tripRequestsReducers,
+	UserSettingReducer,
+	tripRequestCommentsReducer
 });

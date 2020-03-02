@@ -13,6 +13,7 @@ import Profile from '../components/profile/Profile.jsx';
 import Requests from '../views/trip_requests/userTripRequests.view.jsx';
 import Request from '../views/trip_requests/userTripRequest.view.jsx';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import UserRoleSetting from '../components/user/userRole.jsx';
 
 const drawerWidth = 240;
 
@@ -126,6 +127,8 @@ const MainLayout = props => {
 						<Route path='/profile' exact component={Profile} />
 						<Route path='/trips/:id' component={Request} />
 						<Route path='/trips' component={Requests} />
+						<Route path='/user/user-role-setting' component={UserRoleSetting} />
+
 					</Switch>
 				</main>
 			</div>

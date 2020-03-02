@@ -1,6 +1,19 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import reducer from '../../src/reducers/index';
 import { Request, mapStateToProps, nomolizeType } from '../../src/views/trip_requests/userTripRequest.view.jsx';
+
+
+const middlewares = [thunk];
+const testStore = state => {
+    const createStoreWithMiddleware = applyMiddleware(...middlewares)(
+        createStore,
+    );
+    return createStoreWithMiddleware(reducer, state);
+};
 
 describe('Render trip request ui', () => {
 
@@ -27,8 +40,23 @@ describe('Render trip request ui', () => {
         lastName: 'Veda'
     }
     const prop = {}
-    const wrapper = mount(<Request trip={props} user={user} />);
-    mount(<Request trip={prop} history={{ push: jest.fn() }} user={user} />);
+    // const wrapper = mount(<Request trip={props} user={user} />);
+    // mount(<Request trip={prop} history={{ push: jest.fn() }} user={user} />);
+
+
+    const store = testStore({});
+    const wrapper = mount(
+        <Provider store={store}>
+            <Request trip={props} user={user} />
+        </Provider>
+    );
+
+    mount(
+        <Provider store={store}>
+            <Request trip={prop} history={{ push: jest.fn() }} user={user} />
+        </Provider>
+    );
+
 
     it('should map state to props successfully', () => {
 
@@ -87,5 +115,6 @@ describe('Render trip request ui', () => {
         expect(nomolizeType('multi-city')).toEqual('Multiple cities trip');
         expect(nomolizeType('one way')).toEqual('One way trip');
         expect(nomolizeType('return trip')).toEqual('Return trip');
+        nomolizeType('eturn trip');
     })
 });
