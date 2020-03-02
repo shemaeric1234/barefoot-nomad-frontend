@@ -114,8 +114,8 @@ export const Requests = (props) => {
                     <TableCell align="right">{row.tripType}</TableCell>
                     <TableCell align="right">{row.status}</TableCell>
                     <TableCell align="right">{row.accomodation}</TableCell>
-                    <TableCell align="right"><Moment format="D MMM YYYY">{row.departureDate}</Moment></TableCell>
-                    <TableCell align="right"><Moment format="D MMM YYYY">{row.returnDate}</Moment></TableCell>
+                    <TableCell align="right">{`${row.departureDate}` != 'null' ? <Moment format="D MMM YYYY">{row.departureDate}</Moment> : '-'}</TableCell>
+                    <TableCell align="right">{`${row.returnDate}` != 'null' ? <Moment format="D MMM YYYY">{row.returnDate}</Moment> : '-'}</TableCell>
                   </TableRow>
                 );
               })}
@@ -153,11 +153,11 @@ export const Requests = (props) => {
                     </Grid>
                     <Grid item container justify="space-between">
                       <Grid item><Typography style={{ fontSize: 16, color: "#C4C4C4" }}>Departure date</Typography></Grid>
-                      <Grid item><Moment format="D MMM YYYY">{item.departureDate}</Moment></Grid>
+                      <Grid item>{`${item.departureDate}` != 'null' ? <Moment format="D MMM YYYY">{`${item.departureDate}`}</Moment> : '-'}</Grid>
                     </Grid>
                     <Grid item container justify="space-between">
                       <Grid item><Typography style={{ fontSize: 16, color: "#C4C4C4" }}>Return date</Typography></Grid>
-                      <Grid item><Moment format="D MMM YYYY">{item.returnDate}</Moment></Grid>
+                      <Grid item>{`${item.returnDate}` != 'null' ? <Moment format="D MMM YYYY">{item.returnDate}</Moment> : '-'}</Grid>
                     </Grid>
                   </Grid>
                 </CardContent>

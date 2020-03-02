@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { Box, Card, CardContent, Typography, Grid, Button } from '@material-ui/core';
+import { Box, Card, CardContent, Typography, Grid, Button, Container } from '@material-ui/core';
 import TextInput from '../../components/common/TextInput.component.jsx';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Comments from '../../components/comments/comments.view.jsx';
 
 export const nomolizeType = (type) => {
     switch (type) {
@@ -118,6 +119,9 @@ export const Request = (props) => {
                     </Grid>
                 </CardContent>
             </Card>
+            <Container style={{ paddingTop: 42 }}>
+                <Comments tripId={props.trip.tripId} />
+            </Container>
         </Box>
     )
 }

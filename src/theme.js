@@ -7,7 +7,8 @@ const defaultTheme = createMuiTheme({
     },
     secondary: {
       main: '#E10050',
-    }
+    },
+    accent: 'red'
   },
   typography: {
     fontFamily: "Roboto"

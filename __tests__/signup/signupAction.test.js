@@ -40,7 +40,7 @@ describe('Signup Actions tests', () => {
                 { type: 'SIGNUP_ERROR', payload: '' },
                 { type: 'LOADING', payload: false },
                 { type: 'SIGNUP_SUCCESS', payload: true }
-              ]);
+            ]);
         });
     });
 
@@ -74,6 +74,6 @@ describe('Signup Actions tests', () => {
     it('should set error to true', async () => {
         await store.dispatch(setErrorAction(true));
         const calledActions = store.getActions();
-        expect(calledActions).toEqual([ { type: 'SIGNUP_ERROR', payload: true } ]);
+        expect(calledActions).toEqual([{ type: 'SIGNUP_ERROR', payload: true }]);
     });
 });
