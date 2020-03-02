@@ -14,6 +14,7 @@ import { ResetNofiticationSucess } from '../components/password/passwordNotifica
 import Confirm from '../views/signup/confirm.view.jsx';
 import ActivateUser from '../views/signup/activate_user.view.jsx';
 
+
 class DefaultLayout extends PureComponent {
 	render() {
 		return (
