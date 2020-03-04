@@ -377,7 +377,6 @@ export class UserRoleSetting extends Component {
 																getOptionLabel={option => option.role}
 																defaultValue={roles[3].role}
 																onChange={(e, value) => {
-																	console.log('--->', row);
 																	if (row.role === 'manager') {
 																		this.setState({
 																			openModal: true,

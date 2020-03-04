@@ -4,6 +4,7 @@ import { GetUserProfile } from '../../actions/user.profile.action';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import { socketManagement } from '../../actions/notificationPane';
 
 export class UserProfile extends Component {
 	// getting a loged-in user information
@@ -12,12 +13,12 @@ export class UserProfile extends Component {
 	}
 
 	render() {
-		const { userProfileInfo } = this.props;
+		const { userProfileInfo, socketManagement, notifications } = this.props;
 		return (
 			<>
 				{userProfileInfo && (
 					<Box width='100%' style={{ height: '100%' }}>
-						{' '}
+						{socketManagement(userProfileInfo.id)}
 						<Link to='/profile' style={{ textDecoration: 'none' }}>
 							<Box width='100%' height='110px'>
 								<Typography align='center'>
@@ -59,6 +60,9 @@ export class UserProfile extends Component {
 export const mapStateToProps = state => {
 	return {
 		userProfileInfo: state.userProfileReducer.UpdateduserProfileInfo,
+		notifications: state.NotificationReducer.Notifications,
 	};
 };
-export default connect(mapStateToProps, { GetUserProfile })(UserProfile);
+export default connect(mapStateToProps, { GetUserProfile, socketManagement })(
+	UserProfile,
+);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Divider, Typography } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 import verifyToken from '../../helpers/tokenHelper';
+import { useLocation } from 'react-router-dom';
 
 const useStyles = theme => ({
 	isActive: {
@@ -21,7 +22,8 @@ const useStyles = theme => ({
 export class NavLinks extends Component {
 	state = {
 		bgcolor: '#f1f1f1',
-		role:''
+		role: '',
+		location: '/profile',
 	};
 
 	changeBgColor = () => {
@@ -29,23 +31,32 @@ export class NavLinks extends Component {
 	};
 	UNSAFE_componentWillMount() {
 		const token = localStorage.getItem('token');
-		
+
 		const user = verifyToken(token);
 		this.setState({
-			role:user.payload.role
-		})
-		
-		
+			role: user.payload.role,
+		});
 	}
+
+	isActive = path => {
+		return path == this.state.location;
+	};
+
 	render() {
 		const { classes } = this.props;
+
 		return (
 			<Grid
 				container
 				style={{ width: '100%', backgroundColor: 'white', marginTop: '15px' }}
 			>
 				<Divider />
-				<ListItem button>
+				<ListItem
+					id='trips'
+					button
+					onClick={() => this.setState({ location: '/trips' })}
+					selected={this.isActive('/trips')}
+				>
 					<ListItemIcon>
 						<DirectionsWalkIcon />
 					</ListItemIcon>
@@ -57,10 +68,10 @@ export class NavLinks extends Component {
 				</ListItem>
 				<Divider />
 				<ListItem
+					id='profile'
+					selected={this.isActive('/profile')}
 					button
-					className={
-						window.location.pathname === '/profile' ? classes.isActive : 'null'
-					}
+					onClick={() => this.setState({ location: '/profile' })}
 				>
 					<ListItemIcon>
 						<PersonIcon />
@@ -72,26 +83,35 @@ export class NavLinks extends Component {
 					</ListItemText>
 				</ListItem>
 				<Divider />
-				{this.state.role==='admin'?(
-				<ListItem button
-									className={
-						window.location.pathname === '/user/user-role-setting' ? classes.isActive : 'null'
-					}
-				>
-					<ListItemIcon>
-						<SupervisorAccountIcon  />
-					</ListItemIcon>
-					
-				<ListItemText>
-						<Link to='/user/user-role-setting' style={{ textDecoration: 'none' }}>
-							<Typography>Role</Typography>
-						</Link>
-					</ListItemText>
-					</ListItem>):''}
+				{this.state.role === 'admin' ? (
+					<ListItem
+						button
+						className={
+							window.location.pathname === '/user/user-role-setting'
+								? classes.isActive
+								: 'null'
+						}
+					>
+						<ListItemIcon>
+							<SupervisorAccountIcon />
+						</ListItemIcon>
+
+						<ListItemText>
+							<Link
+								to='/user/user-role-setting'
+								style={{ textDecoration: 'none' }}
+							>
+								<Typography>Role</Typography>
+							</Link>
+						</ListItemText>
+					</ListItem>
+				) : (
+					''
+				)}
 				<Divider />
 			</Grid>
 		);
 	}
 }
 
-export default withStyles(useStyles)(NavLinks);
+export default withStyles(useStyles)(withRouter(NavLinks));

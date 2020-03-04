@@ -10,6 +10,7 @@ import {
 export const props = {
 	classes: { textFild: '' },
 	UpdateduserProfileInfo: { successMessage: 'true' },
+	socketManagement: jest.fn(),
 	userProfileInfo: {},
 	goodBye: jest.fn(),
 	greeting: jest.fn(),

@@ -44,7 +44,6 @@ export const updateUserRole = ({ userId, role }) => async dispatch => {
 		roles.push({ userId: userId, role: response.data.data.role });
 		dispatch(updateRoleSucess(roles));
 		dispatch({ type: 'LOADING', payload: false });
-
 	} catch (error) {
 		dispatch(updateRoleFailure(error.response.data.error));
 		dispatch({ type: 'LOADING', payload: false });
@@ -71,8 +70,6 @@ export function updateRoleFailure(error) {
 }
 export const updateOneUser = (userInfo, allUsers) => dispatch => {
 	allUsers.map(user => {
-		console.log('user info',user.id );
-		
 		if (user.id === userInfo.id) {
 			user.role = userInfo.role;
 		}
@@ -82,4 +79,3 @@ export const updateOneUser = (userInfo, allUsers) => dispatch => {
 		updatedUsers: allUsers,
 	});
 };
-

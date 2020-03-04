@@ -414,7 +414,6 @@ export class Profile extends Component {
 													item
 													style={{ marginLeft: '19%', marginRight: '2%' }}
 												>
-													{/* <Box pr={2}> */}
 													<Button
 														id='cancel'
 														variant='contained'
@@ -431,10 +430,8 @@ export class Profile extends Component {
 													>
 														Cancel
 													</Button>
-													{/* </Box> */}
 												</Grid>
 												<Grid item style={{ float: 'right' }}>
-													{/* <Box pl={2}> */}
 													<Button
 														id='update'
 														variant='contained'
@@ -451,7 +448,6 @@ export class Profile extends Component {
 													>
 														Update
 													</Button>
-													{/* </Box> */}
 												</Grid>
 											</Grid>
 										</Grid>

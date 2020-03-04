@@ -10,7 +10,6 @@ exports[`user profile component should render the user profile  component succes
     }
     width="100%"
   >
-     
     <Link
       style={
         Object {

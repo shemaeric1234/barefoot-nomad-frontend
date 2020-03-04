@@ -11,9 +11,10 @@ describe('user profile component', () => {
 		const wrapper = shallow(<UserProfile {...props} />);
 		expect(wrapper).toMatchSnapshot();
 	});
-	it('should render the user profile component successfully', () => {
+	it('should have initial state', () => {
 		const initState = {
 			userProfileReducer: { UpdateduserProfileInfo: '' },
+			NotificationReducer: { Notifications: [] },
 		};
 		expect(mapStateToProps(initState)).toBeDefined();
 	});
