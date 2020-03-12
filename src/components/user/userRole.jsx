@@ -62,6 +62,7 @@ export class UserRoleSetting extends Component {
 	}
 
 	UNSAFE_componentWillMount() {
+
 		const token = localStorage.getItem('token');
 		const user = verifyToken(token);
 		if (user.payload.role !== 'admin') {
@@ -234,7 +235,7 @@ export class UserRoleSetting extends Component {
 										.slice(
 											this.state.page * this.state.rowsPerPage,
 											this.state.page * this.state.rowsPerPage +
-												this.state.rowsPerPage,
+											this.state.rowsPerPage,
 										)
 										.map((row, index) => {
 											return (
@@ -319,7 +320,7 @@ export class UserRoleSetting extends Component {
 							.slice(
 								this.state.page * this.state.rowsPerPage,
 								this.state.page * this.state.rowsPerPage +
-									this.state.rowsPerPage,
+								this.state.rowsPerPage,
 							)
 							.map((row, index) => {
 								return (
@@ -483,8 +484,8 @@ export class UserRoleSetting extends Component {
 									update
 								</Button>
 							) : (
-								<CircularProgress />
-							)}
+									<CircularProgress />
+								)}
 						</Grid>
 						<Hidden mdDown>
 							<Grid item xs={5}>

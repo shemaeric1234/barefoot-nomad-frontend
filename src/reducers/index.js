@@ -9,6 +9,7 @@ import tripRequestsReducers from './trip_requests/tripRequestsReducers';
 import UserSettingReducer from './UserSettingReducer';
 import tripRequestCommentsReducer from './trip_requests/commentsReducers';
 import NotificationReducer from './notification.reducer';
+import userManagementReducer from './userManagementReducers';
 
 export default combineReducers({
 	appReducer,
@@ -22,4 +23,5 @@ export default combineReducers({
 	UserSettingReducer,
 	tripRequestCommentsReducer,
 	NotificationReducer,
+	userManagementReducer,
 });

@@ -3,13 +3,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Footer from '../general/footer';
+import { Box, Container, Link } from '@material-ui/core';
+import Footer from '../common/footer';
 import { connect } from 'react-redux';
 import { signIn, logout, history } from '../../actions/signInAction';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { formUseStyles } from '../../styles/login/loginStyle.js';
 import SocialAuth from '../auth/SocialLogin.jsx';
-import { Box, Container, Link } from '@material-ui/core';
 
 export class LoginForm extends Component {
 	constructor(props) {
@@ -131,8 +131,8 @@ export class LoginForm extends Component {
 									Sign In
 								</Button>
 							) : (
-								<CircularProgress />
-							)}
+									<CircularProgress />
+								)}
 							<Typography variant='h6' color='textSecondary'>
 								{' '}
 								Or{' '}
