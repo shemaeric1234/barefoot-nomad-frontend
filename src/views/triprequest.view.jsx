@@ -62,7 +62,9 @@ export class TripRequest extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
 		this.handleChangeDepartureDate = this.handleChangeDepartureDate.bind(this);
+		this.handleChangeReturnDate = this.handleChangeReturnDate.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleOncloseSnackbar = this.handleOncloseSnackbar.bind(this);
 		this.state = {
 			activeIndex: 0,
 			index: 0,
@@ -75,6 +77,7 @@ export class TripRequest extends Component {
 			invalidReturnDate: '',
 			reason: '',
 			accomodationId: '',
+			open: true,
 		};
 	}
 
@@ -96,6 +99,16 @@ export class TripRequest extends Component {
 	}
 	handleChangeDepartureDate(date) {
 		this.setState({ departureDate: date });
+	}
+	handleChangeReturnDate(date) {
+		if (this.state.departureDate > date || !date) {
+			this.setState({
+				invalidReturnDate: 'Invalid Return Date',
+				returnDate: this.state.departureDate,
+			});
+		} else {
+			this.setState({ invalidReturnDate: '', returnDate: date });
+		}
 	}
 	handleClick(accommodation) {
 		if (accommodation) {
@@ -146,6 +159,9 @@ export class TripRequest extends Component {
 		});
 		this.props.info.accommodations = '';
 	}
+	handleOncloseSnackbar() {
+		this.setState({ open: false });
+	}
 	render() {
 		const { index } = this.state;
 		return (
@@ -156,9 +172,11 @@ export class TripRequest extends Component {
 					</Typography>{' '}
 					{this.props.tripCreated && (
 						<Snackbar
-							open={true}
-							autoHideDuration={100}
+							open={this.state.open}
+							autoHideDuration={3000}
 							anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+							data-test='closeSnackbar'
+							onClose={this.handleOncloseSnackbar}
 						>
 							<Alert
 								style={{
@@ -190,7 +208,11 @@ export class TripRequest extends Component {
 						</Snackbar>
 					)}
 					{this.props.error && (
-						<Snackbar open={true} autoHideDuration={6000}>
+						<Snackbar
+							open={this.state.open}
+							autoHideDuration={3000}
+							onClose={this.handleOncloseSnackbar}
+						>
 							<Alert
 								severity='error'
 								style={{
@@ -218,6 +240,7 @@ export class TripRequest extends Component {
 						value={this.state}
 						onHandleChange={this.handleChange}
 						handleChangeDepartureDate={this.handleChangeDepartureDate}
+						handleChangeReturnDate={this.handleChangeReturnDate}
 					/>
 				</Paper>
 				<Paper style={Object.assign({}, styles.picture)}>

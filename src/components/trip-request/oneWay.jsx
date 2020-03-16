@@ -99,6 +99,27 @@ export class OneWayForm extends Component {
 							}}
 						/>
 					</MuiPickersUtilsProvider>
+					{this.props.value.index !== 0 ? (
+						<MuiPickersUtilsProvider utils={DateFnsUtils}>
+							<KeyboardDatePicker
+								inputVariant='outlined'
+								disableToolbar
+								variant='inline'
+								size='small'
+								format='MM/dd/yyyy'
+								margin='none'
+								minDate={departureDate}
+								minDateMessage='Return date should be prior to the departure date'
+								label='Return Date'
+								name='returnDate'
+								value={returnDate}
+								onChange={this.props.handleChangeReturnDate}
+								KeyboardButtonProps={{
+									'aria-label': 'change date',
+								}}
+							/>
+						</MuiPickersUtilsProvider>
+					) : null}
 					<TextField
 						size='small'
 						label='reason'

@@ -157,6 +157,51 @@ describe('Trip Request component tests', () => {
 			'Mon Mar 09 2020 16:38:51 GMT+0200 (Central Africa Time)',
 		);
 	});
+	it('should handle return date change successfully', () => {
+		const component = setUp();
+		component.setState({
+			index: 1,
+			submitted: false,
+			reason: '',
+			accomodationId: '',
+			From: '',
+			To: '',
+			type: 'one way',
+			departureDate: ``,
+		});
+		component
+			.find('Connect(WithStyles(OneWayForm))')
+			.props()
+			.handleChangeReturnDate(
+				'Mon Mar 09 2020 16:38:51 GMT+0200 (Central Africa Time)',
+			);
+		expect(component.state('returnDate')).toEqual(
+			'Mon Mar 09 2020 16:38:51 GMT+0200 (Central Africa Time)',
+		);
+	});
+	it('should handle return date to be greater than departure date', () => {
+		const component = setUp();
+		component.setState({
+			index: 1,
+			submitted: false,
+			reason: '',
+			accomodationId: '',
+			From: '',
+			To: '',
+			type: 'one way',
+			departureDate: `Mon Mar 14 2020 16:38:51 GMT+0200 (Central Africa Time)`,
+			returnDate: ``,
+		});
+		component
+			.find('Connect(WithStyles(OneWayForm))')
+			.props()
+			.handleChangeReturnDate(
+				'Mon Mar 10 2020 16:38:51 GMT+0200 (Central Africa Time)',
+			);
+		expect(component.state('returnDate')).toEqual(
+			'Mon Mar 14 2020 16:38:51 GMT+0200 (Central Africa Time)',
+		);
+	});
 	it('should handle onclick change of accommodationId', () => {
 		const component = setUp();
 		component
@@ -188,6 +233,14 @@ describe('Trip Request component tests', () => {
 			.onChange('', 2);
 		expect(handleChangeSpy).toBeDefined();
 		expect(component.state('index')).toEqual(2);
+	});
+	it('should handle close snackbar successfully', () => {
+		const component = setUp();
+		component
+			.find('[data-test="closeSnackbar"]')
+			.props()
+			.onClose();
+		expect(component.state('open')).toEqual(false);
 	});
 	it('should map state to props', () => {
 		const state = props;

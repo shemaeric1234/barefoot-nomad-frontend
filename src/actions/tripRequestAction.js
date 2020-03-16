@@ -16,7 +16,6 @@ const headers = {
 };
 export const requestTrip = data => async dispatch => {
 	dispatch({ type: 'LOADING', payload: true });
-	console.log(data);
 	return await axios
 		.post(`${process.env.BACKEND_BASE_URL}/api/v1/trips`, data, { headers })
 		.then(response => {
@@ -25,7 +24,6 @@ export const requestTrip = data => async dispatch => {
 			dispatch(success(request));
 		})
 		.catch(error => {
-			console.log(error);
 			const errorData = error.response.data;
 			dispatch({ type: 'LOADING', payload: false });
 			dispatch(failure(errorData));
@@ -40,7 +38,6 @@ export const GetLocations = () => async dispatch => {
 		.then(response => {
 			const data = response.data.data;
 			dispatch({ type: 'GET_LOCATIONS', locationsInfo: data });
-			return data;
 		});
 };
 
@@ -62,7 +59,6 @@ export const GetAccomodations = destination => dispatch => {
 			} else {
 				dispatch({ type: 'GET_ACCOMODATION_SUCCESS', accommodations: false });
 			}
-			return accommodations;
 		});
 };
 
@@ -70,7 +66,7 @@ export const success = request => {
 	return {
 		type: REQUEST_TRIP_SUCCESS,
 		payload: request,
-		message: 'Trip have been Successfully created',
+		message: 'Trip request has been successfully created',
 	};
 };
 
