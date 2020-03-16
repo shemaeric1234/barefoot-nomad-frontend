@@ -7,12 +7,13 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
 import EditIcon from '@material-ui/icons/Edit';
-import { Divider, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Divider, Typography, Collapse, List } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import verifyToken from '../../helpers/tokenHelper';
 import { useLocation } from 'react-router-dom';
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const useStyles = theme => ({
 	isActive: {
@@ -26,6 +27,7 @@ export class NavLinks extends Component {
 		bgcolor: '#f1f1f1',
 		role: '',
 		location: '/',
+		open: false,
 	};
 
 	UNSAFE_componentWillMount() {
@@ -53,7 +55,12 @@ export class NavLinks extends Component {
 				<ListItem
 					id='trips'
 					button
-					onClick={() => this.setState({ location: '/trips' })}
+					onClick={() => {
+						this.setState({ location: '/trips' });
+						this.state.open
+							? this.setState({ open: false })
+							: this.setState({ open: true });
+					}}
 					selected={this.isActive('/trips')}
 				>
 					<ListItemIcon>
@@ -64,7 +71,34 @@ export class NavLinks extends Component {
 							<Typography>Trips</Typography>
 						</Link>
 					</ListItemText>
+					{this.state.open ? <ExpandLess /> : <ExpandMore />}
 				</ListItem>
+				{this.state.open ? (
+					<Collapse in={this.state.open} timeout='auto'>
+						<List component='div' disablePadding>
+							<ListItem
+								id='make-trip-request'
+								button
+								onClick={() => {
+									this.setState({ location: '/make-trip-request' });
+								}}
+								selected={this.isActive('/make-trip-request')}
+								style={{ paddingLeft: 80, paddingRight: 80 }}
+								key={1}
+							>
+								<ListItemText>
+									<Link
+										to='/make-trip-request'
+										style={{ textDecoration: 'none' }}
+									>
+										<Typography>Create Trip</Typography>
+									</Link>
+								</ListItemText>
+							</ListItem>
+						</List>
+					</Collapse>
+				) : null}
+
 				<Divider />
 				<ListItem
 					id='profile'
@@ -132,8 +166,8 @@ export class NavLinks extends Component {
 						</ListItem>
 					</>
 				) : (
-						''
-					)}
+					''
+				)}
 				<Divider />
 			</Grid>
 		);

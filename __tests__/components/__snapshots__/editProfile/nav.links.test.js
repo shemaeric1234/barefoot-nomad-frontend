@@ -38,4 +38,13 @@ describe('Top navigation bar component', () => {
 		const location = wrapper3.state().location;
 		expect(location).toBe('/user-management');
 	});
+	it('should handle onclick event of create trip request link', () => {
+		const wrapper = shallow(<NavLinks />);
+		wrapper.setState({
+			open: true,
+		});
+		wrapper.find('#make-trip-request').simulate('click');
+		const location = wrapper.state().location;
+		expect(location).toBe('/make-trip-request');
+	});
 });

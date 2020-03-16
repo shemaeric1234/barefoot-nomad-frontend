@@ -1,0 +1,83 @@
+import axios from 'axios';
+export const REQUEST_TRIP_SUCCESS = 'REQUEST_TRIP_SUCCESS';
+export const REQUEST_TRIP_FAILURE = 'REQUEST_TRIP_FAILURE';
+export const GET_LOCATIONS = 'GET_LOCATIONS';
+export const GET_ACCOMODATION_SUCCESS = 'GET_ACCOMODATION_SUCCESS';
+export const GET_ACCOMODATION_FAILURE = 'GET_ACCOMODATION_FAILURE';
+import { config } from 'dotenv';
+
+config();
+
+const userToken = `Bearer ${localStorage.getItem('token')}`;
+
+const headers = {
+	'Content-Type': 'application/json',
+	token: userToken,
+};
+export const requestTrip = data => async dispatch => {
+	dispatch({ type: 'LOADING', payload: true });
+	console.log(data);
+	return await axios
+		.post(`${process.env.BACKEND_BASE_URL}/api/v1/trips`, data, { headers })
+		.then(response => {
+			const request = response.data.data;
+			dispatch({ type: 'LOADING', payload: false });
+			dispatch(success(request));
+		})
+		.catch(error => {
+			console.log(error);
+			const errorData = error.response.data;
+			dispatch({ type: 'LOADING', payload: false });
+			dispatch(failure(errorData));
+		});
+};
+
+export const GetLocations = () => async dispatch => {
+	await axios
+		.get(`${process.env.BACKEND_BASE_URL}/api/v1/locations`, {
+			headers,
+		})
+		.then(response => {
+			const data = response.data.data;
+			dispatch({ type: 'GET_LOCATIONS', locationsInfo: data });
+			return data;
+		});
+};
+
+export const GetAccomodations = destination => dispatch => {
+	return axios
+		.get(
+			`${process.env.BACKEND_BASE_URL}/api/v1/accommodations/located/${destination}`,
+			{
+				headers,
+			},
+		)
+		.then(response => {
+			const accommodations = response.data.data;
+			if (accommodations.length > 0) {
+				dispatch({
+					type: 'GET_ACCOMODATION_SUCCESS',
+					accommodations: accommodations,
+				});
+			} else {
+				dispatch({ type: 'GET_ACCOMODATION_SUCCESS', accommodations: false });
+			}
+			return accommodations;
+		});
+};
+
+export const success = request => {
+	return {
+		type: REQUEST_TRIP_SUCCESS,
+		payload: request,
+		message: 'Trip have been Successfully created',
+	};
+};
+
+export const failure = error => {
+	return {
+		type: REQUEST_TRIP_FAILURE,
+		payload: error,
+		message: 'Trip cannot be created, check provided info and Try Again !!',
+	};
+};
