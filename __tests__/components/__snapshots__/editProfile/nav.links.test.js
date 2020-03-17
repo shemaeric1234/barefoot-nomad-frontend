@@ -38,13 +38,18 @@ describe('Top navigation bar component', () => {
 		const location = wrapper3.state().location;
 		expect(location).toBe('/user-management');
 	});
-	it('should handle onclick event of create trip request link', () => {
+	it('should handle onclick event of trips link', () => {
 		const wrapper = shallow(<NavLinks />);
-		wrapper.setState({
-			open: true,
-		});
-		wrapper.find('#make-trip-request').simulate('click');
+		// window.location.pathname = '/user/user-role-setting';
+		wrapper.setState({ role: 'admin' });
+		wrapper.find('#trips').simulate('click');
 		const location = wrapper.state().location;
-		expect(location).toBe('/make-trip-request');
+		expect(location).toBe('/trips');
+	});
+	it('should handle onclick event of profile link', () => {
+		const wrapper = shallow(<NavLinks />);
+		wrapper.find('#profile').simulate('click');
+		const location = wrapper.state().location;
+		expect(location).toBe('/profile');
 	});
 });

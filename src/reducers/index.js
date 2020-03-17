@@ -11,6 +11,7 @@ import tripRequestCommentsReducer from './trip_requests/commentsReducers';
 import NotificationReducer from './notification.reducer';
 import userManagementReducer from './userManagementReducers';
 import tripRequestReducer from './tripRequestReducer';
+import approvalsTableReducer from './approval.table.reducer';
 
 export default combineReducers({
 	appReducer,
@@ -26,4 +27,5 @@ export default combineReducers({
 	NotificationReducer,
 	userManagementReducer,
 	tripRequestReducer,
+	approvalsTableReducer,
 });

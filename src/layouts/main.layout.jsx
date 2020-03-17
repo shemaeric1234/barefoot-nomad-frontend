@@ -16,6 +16,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import UserRoleSetting from '../components/user/userRole.jsx';
 import UserManagement from '../components/usermanagements/UserManagement.jsx';
 import TripRequest from '../views/triprequest.view.jsx';
+import ApprovalTable from '../components/approvals_table/approval.table.jsx';
+import ApprovalsTripRequest from '../components/approvals_table/trip.request.jsx';
 
 const drawerWidth = 240;
 
@@ -132,6 +134,8 @@ const MainLayout = props => {
 						<Route path='/user/user-role-setting' component={UserRoleSetting} />
 						<Route path='/user-management' component={UserManagement} />
 						<Route path='/make-trip-request' exact component={TripRequest} />
+						<Route path='/approval-table' component={ApprovalTable} />
+						<Route path='/trip-request' component={ApprovalsTripRequest} />
 					</Switch>
 				</main>
 			</div>

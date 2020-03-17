@@ -6,14 +6,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
-import EditIcon from '@material-ui/icons/Edit';
 import { Divider, Typography, Collapse, List } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import verifyToken from '../../helpers/tokenHelper';
-import { useLocation } from 'react-router-dom';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import DoneAllOutlinedIcon from '@material-ui/icons/DoneAllOutlined';
 
 const useStyles = theme => ({
 	isActive: {
@@ -168,6 +167,26 @@ export class NavLinks extends Component {
 				) : (
 					''
 				)}
+				{this.state.role === 'manager' ? (
+					<ListItem
+						id='approval_table'
+						selected={this.isActive('/approval-table')}
+						button
+						onClick={() => this.setState({ location: '/approval-table' })}
+					>
+						<ListItemIcon>
+							<DoneAllOutlinedIcon />
+						</ListItemIcon>
+						<ListItemText>
+							<Link to='/approval-table' style={{ textDecoration: 'none' }}>
+								<Typography style={{ fontSize: '1em' }}>Approvals</Typography>
+							</Link>
+						</ListItemText>
+					</ListItem>
+				) : (
+					''
+				)}
+
 				<Divider />
 			</Grid>
 		);

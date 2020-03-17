@@ -4,9 +4,7 @@ import {
 	TextField,
 	MenuItem,
 	Select,
-	Box,
 	FormControl,
-	InputLabel,
 	Container,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
@@ -16,7 +14,6 @@ import {
 	KeyboardDatePicker,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 
 const useStyles = {
 	box: {
