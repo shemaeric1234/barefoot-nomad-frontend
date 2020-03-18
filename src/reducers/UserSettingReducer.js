@@ -6,10 +6,10 @@ const userSettingReducer = (state = {}, action) => {
 				users: action.payload,
 				oldUsersInfo: action.payload,
 			};
-			case 'GET_ONE_UPDATE':
+		case 'GET_ONE_UPDATE':
 			return {
 				...state,
-				users: { ...state.users,...action.updatedUsers },
+				users: { ...state.users, ...action.updatedUsers },
 			};
 		case 'SETTING_ROLES':
 			return {
