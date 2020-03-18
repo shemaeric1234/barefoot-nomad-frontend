@@ -142,7 +142,7 @@ export class NavLinks extends Component {
 
               <ListItemText>
                 <Link
-                  to="/user/user_role_setting"
+                  to="/user/user-role-setting"
                   style={{ textDecoration: "none" }}
                 >
                   <Typography>Role</Typography>

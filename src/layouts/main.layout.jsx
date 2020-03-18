@@ -133,7 +133,7 @@ const MainLayout = props => {
             <Route path="/trips/:id" component={Request} />
             <Route path="/trips" component={Requests} />
             <Route path="/trips-stats" component={UserStatistics} />
-            <Route path="/user/user-role-setting" component={UserRoleSetting} />
+			<Route path='/user/user-role-setting' component={UserRoleSetting} />
             <Route path="/user-management" component={UserManagement} />
             <Route path="/make-trip-request" exact component={TripRequest} />
             <Route path="/approval-table" component={ApprovalTable} />
