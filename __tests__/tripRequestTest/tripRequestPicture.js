@@ -30,14 +30,6 @@ const initialSetUp = (initialState = {}) => {
 const setUpComponent = (initialState = {}) => {
 	const store = testStore(initialState);
 	const wrapper = shallow(<AdsPictures {...props} store={store} />);
-	wrapper.setState({
-		departure: '',
-		destination: '',
-		date: '',
-		reasons: '',
-		accommodation: '',
-		to: '',
-	});
 	return wrapper;
 };
 describe('Accommodation Information component tests', () => {
@@ -51,7 +43,7 @@ describe('Accommodation Information component tests', () => {
 			.find('r')
 			.at(1)
 			.props()
-			.requestToChangeActive('v');
+			.requestToChangeActive(1);
 	});
 	it('should simulate onclick on accomodation card successfully', () => {
 		const component = initialSetUp();
@@ -60,6 +52,18 @@ describe('Accommodation Information component tests', () => {
 			.at(1)
 			.props()
 			.onClick();
+	});
+	it('should handle onclick successfully on accomodation info card. when creating multi city trip request', () => {
+		const component = setUpComponent();
+		component.setProps({
+			index: 1,
+		});
+		component
+			.find('WithStyles(ForwardRef(Card))')
+			.at(1)
+			.props()
+			.onClick();
+		expect(component.state('accommodationId')).toEqual(true);
 	});
 	it('should map state to props', () => {
 		const state = props;

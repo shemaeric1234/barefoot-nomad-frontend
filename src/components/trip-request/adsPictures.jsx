@@ -120,7 +120,7 @@ export class AdsPictures extends Component {
 					<>
 						<Typography variant='h4' align='center'>
 							{' '}
-							Available Accommodations
+							Available Accommodations in {this.props.destination}
 						</Typography>
 						<Paper style={Object.assign({}, styles.paper)}>
 							<br />
@@ -134,7 +134,7 @@ export class AdsPictures extends Component {
 									this.props.bigSize && accomodationInfomation.length > 1
 										? {
 												padding: '0',
-												maxWidth: '1080px',
+												maxWidth: '1100px',
 										  }
 										: this.props.screenSize.toString() == 'lg'
 										? {
@@ -192,8 +192,19 @@ export class AdsPictures extends Component {
 												style={styles.cardBorder}
 											>
 												<Card
-													onClick={() =>
-														this.props.onClick(accomodationInfomation[i].id)
+													onClick={
+														this.props.index
+															? () => (
+																	this.props.onClick(
+																		accomodationInfomation[i].id,
+																		this.props.number,
+																	),
+																	this.setState({ accommodationId: true })
+															  )
+															: () =>
+																	this.props.onClick(
+																		accomodationInfomation[i].id,
+																	)
 													}
 												>
 													<CardActionArea>

@@ -14,6 +14,7 @@ import {
 	KeyboardDatePicker,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 
 const useStyles = {
 	box: {
@@ -27,6 +28,10 @@ const useStyles = {
 export class OneWayForm extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			submitted: false,
+			destination: '',
+		};
 	}
 
 	UNSAFE_componentWillMount() {
@@ -40,11 +45,16 @@ export class OneWayForm extends Component {
 				{location.city}
 			</MenuItem>
 		));
-		const destinationLocation = info.locationsInfo.map((location, index) => (
-			<MenuItem value={location.id} key={index}>
-				{location.city}
-			</MenuItem>
-		));
+		const destinationLocation = info.locationsInfo.map(
+			(location, index) => (
+				To === location.id ? (this.props.city.destination = location.city) : '',
+				(
+					<MenuItem value={location.id} key={index}>
+						{location.city}
+					</MenuItem>
+				)
+			),
+		);
 		return (
 			<div>
 				<Container maxWidth='xl' className={classes.box}>
@@ -52,10 +62,26 @@ export class OneWayForm extends Component {
 						<Select
 							name='From'
 							id='departure'
-							value={From}
-							onChange={this.props.onHandleChange}
+							value={
+								this.props.previousValue ? this.props.previousValue.To : From
+							}
+							onChange={
+								this.props.index
+									? e => (
+											this.props.onHandleChange(e, this.props.number),
+											this.setState({ submitted: true })
+									  )
+									: this.props.onHandleChange
+							}
 							variant='outlined'
 							displayEmpty
+							disabled={
+								this.props.previousValue
+									? this.props.previousValue.To
+										? true
+										: false
+									: false
+							}
 						>
 							<MenuItem value='' disabled>
 								<em>Departure</em>
@@ -68,7 +94,14 @@ export class OneWayForm extends Component {
 							name='To'
 							id='destination'
 							value={To}
-							onChange={this.props.onHandleChange}
+							onChange={
+								this.props.index
+									? e => (
+											this.props.onHandleChange(e, this.props.number),
+											this.setState({ submitted: false })
+									  )
+									: this.props.onHandleChange
+							}
 							variant='outlined'
 							displayEmpty
 						>
@@ -88,15 +121,31 @@ export class OneWayForm extends Component {
 							margin='none'
 							label='Departure date'
 							name='departureDate'
-							minDate={departureDate}
+							minDate={
+								this.props.previousValue
+									? this.props.previousValue.departureDate
+									: departureDate
+							}
+							minDateMessage='Departure date should be prior to the departure date of previous trip'
 							value={departureDate}
-							onChange={this.props.handleChangeDepartureDate}
+							onChange={
+								this.props.index
+									? e => (
+											this.props.handleChangeDateMultiCity(
+												e,
+												'departureDate',
+												this.props.number,
+											),
+											this.setState({ submitted: true })
+									  )
+									: this.props.handleChangeDepartureDate
+							}
 							KeyboardButtonProps={{
 								'aria-label': 'change date',
 							}}
 						/>
 					</MuiPickersUtilsProvider>
-					{this.props.value.index !== 0 ? (
+					{this.props.value.index === 1 ? (
 						<MuiPickersUtilsProvider utils={DateFnsUtils}>
 							<KeyboardDatePicker
 								inputVariant='outlined'
@@ -110,7 +159,7 @@ export class OneWayForm extends Component {
 								label='Return Date'
 								name='returnDate'
 								value={returnDate}
-								onChange={this.props.handleChangeReturnDate}
+								onChange={() => this.props.handleChangeReturnDate}
 								KeyboardButtonProps={{
 									'aria-label': 'change date',
 								}}
@@ -124,8 +173,28 @@ export class OneWayForm extends Component {
 						variant='outlined'
 						value={reason}
 						name='reason'
-						onChange={this.props.onHandleChange}
+						onChange={
+							this.props.index
+								? e => (
+										this.props.onHandleChange(e, this.props.number),
+										this.setState({ submitted: false })
+								  )
+								: this.props.onHandleChange
+						}
 					/>
+					{this.props.index && this.props.multiCityDatalength > 2 ? (
+						<CloseRoundedIcon
+							style={{
+								fontSize: 20,
+								cursor: 'pointer',
+								margin: '12px 0px 0px 0px',
+								width: 100,
+							}}
+							color='secondary'
+							onClick={() => this.props.handleDelete(this.props.index)}
+							data-test='detele-icon'
+						/>
+					) : null}
 				</Container>
 			</div>
 		);

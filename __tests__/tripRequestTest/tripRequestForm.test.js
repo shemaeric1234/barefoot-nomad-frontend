@@ -28,6 +28,89 @@ describe('Trip requests Form component tests', () => {
 		const wrapper = setUpComponent();
 		expect(wrapper.find('div').length).toBe(1);
 	});
+	it('should handle departure change successfully while sending multi city trip request', () => {
+		const component = setUpComponent();
+		component.setProps({
+			index: 1,
+		});
+		component.setState({
+			submitted: false,
+		});
+		component
+			.find('WithStyles(ForwardRef(Select))')
+			.at(0)
+			.props()
+			.onChange();
+		expect(component.state('submitted')).toEqual(true);
+	});
+	it('should handle destination change successfully while sending multi city trip request', () => {
+		const component = setUpComponent();
+		component.setProps({
+			index: 1,
+		});
+		component.setState({
+			submitted: true,
+		});
+		component
+			.find('WithStyles(ForwardRef(Select))')
+			.at(1)
+			.props()
+			.onChange();
+		expect(component.state('submitted')).toEqual(false);
+	});
+	it('should handle departure date change successfully while sending multi city trip request', () => {
+		const component = setUpComponent();
+		component.setProps({
+			index: 1,
+		});
+		component.setState({
+			submitted: false,
+		});
+		component
+			.find('PickerWithState')
+			.props()
+			.onChange();
+		expect(component.state('submitted')).toEqual(true);
+	});
+	it('should handle reason change successfully while sending multi city trip request', () => {
+		const component = setUpComponent();
+		component.setProps({
+			index: 1,
+		});
+		component.setState({
+			submitted: true,
+		});
+		component
+			.find('WithStyles(ForwardRef(TextField))')
+			.props()
+			.onChange();
+		expect(component.state('submitted')).toEqual(false);
+	});
+	it('should simulate onChange successfully', () => {
+		const component = setUpComponent();
+		component.setProps({
+			index: 1,
+			value: {
+				index: 1,
+			},
+		});
+		component
+			.find('PickerWithState')
+			.at(1)
+			.props()
+			.onChange();
+	});
+	it('should simulate delete change when onclick is successful', () => {
+		const component = setUpComponent();
+		component.setProps({
+			index: 1,
+			multiCityDatalength: 3,
+		});
+		component
+			.find('CloseRoundedIcon')
+			.props()
+			.onClick();
+	});
 	it('should map state to props', () => {
 		const state = props;
 		const stateObject = mapStateToProps(state);

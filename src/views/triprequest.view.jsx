@@ -26,7 +26,7 @@ const styles = {
 	},
 	slide1: {
 		backgroundColor: '#fff',
-		width: '96%',
+		width: '98%',
 	},
 	slide2: {
 		backgroundColor: '#fff',
@@ -40,6 +40,13 @@ const styles = {
 	paper: {
 		padding: '10px 10px 10px 10px',
 		margin: '0px 0px 10px 0px',
+		textAlign: 'center',
+		alignContent: 'center',
+	},
+	paperMultiCity: {
+		width: '100%',
+		padding: '0px 20px 0px 140px',
+		margin: '0px 0px 5px 0px',
 		textAlign: 'center',
 		alignContent: 'center',
 	},
@@ -65,6 +72,13 @@ export class TripRequest extends Component {
 		this.handleChangeReturnDate = this.handleChangeReturnDate.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleOncloseSnackbar = this.handleOncloseSnackbar.bind(this);
+		this.handleAddMultiCityData = this.handleAddMultiCityData.bind(this);
+		this.handleDeletemultiCityData = this.handleDeletemultiCityData.bind(this);
+		this.handleChangeMultiCityData = this.handleChangeMultiCityData.bind(this);
+		this.handleChangeDateMultiCity = this.handleChangeDateMultiCity.bind(this);
+		this.handleChangeAccomodationMultiCity = this.handleChangeAccomodationMultiCity.bind(
+			this,
+		);
 		this.state = {
 			activeIndex: 0,
 			index: 0,
@@ -74,10 +88,28 @@ export class TripRequest extends Component {
 			type: 'one way',
 			departureDate: `${new Date()}`,
 			returnDate: `${new Date()}`,
-			invalidReturnDate: '',
 			reason: '',
 			accomodationId: '',
 			open: true,
+			destination: '',
+			multiCity: [
+				{
+					From: '',
+					To: '',
+					type: 'one way',
+					departureDate: `${new Date()}`,
+					reason: '',
+					accomodationId: '',
+				},
+				{
+					From: '',
+					To: '',
+					type: 'one way',
+					departureDate: `${new Date()}`,
+					reason: '',
+					accomodationId: '',
+				},
+			],
 		};
 	}
 
@@ -85,16 +117,48 @@ export class TripRequest extends Component {
 		this.setState({
 			index: value,
 		});
+		this.setState({
+			From: '',
+			To: '',
+			type: 'one way',
+			departureDate: `${new Date()}`,
+			returnDate: `${new Date()}`,
+			reason: '',
+			accomodationId: '',
+			multiCity: [
+				{
+					From: '',
+					To: '',
+					type: 'one way',
+					departureDate: `${new Date()}`,
+					reason: '',
+					accomodationId: '',
+				},
+				{
+					From: '',
+					To: '',
+					type: 'one way',
+					departureDate: `${new Date()}`,
+					reason: '',
+					accomodationId: '',
+				},
+			],
+		});
+		this.props.info.accommodations = '';
 	};
 	handleChange(e) {
 		let { name, value } = e.target;
-		this.setState({ [name]: value });
-		if (value === this.state.From && value === this.state.To) {
+		if (value === this.state.From || value === this.state.To) {
 			this.setState({ To: '' });
 			this.props.info.accommodations = '';
-		}
-		if (name === 'To' && value !== this.state.From) {
+		} else if (name === 'To') {
+			this.setState({
+				accomodationId: '',
+			});
+			this.setState({ [name]: value });
 			this.props.GetAccomodations(value);
+		} else {
+			this.setState({ [name]: value });
 		}
 	}
 	handleChangeDepartureDate(date) {
@@ -103,11 +167,10 @@ export class TripRequest extends Component {
 	handleChangeReturnDate(date) {
 		if (this.state.departureDate > date || !date) {
 			this.setState({
-				invalidReturnDate: 'Invalid Return Date',
 				returnDate: this.state.departureDate,
 			});
 		} else {
-			this.setState({ invalidReturnDate: '', returnDate: date });
+			this.setState({ returnDate: date });
 		}
 	}
 	handleClick(accommodation) {
@@ -126,6 +189,7 @@ export class TripRequest extends Component {
 			returnDate,
 			accomodationId,
 			type,
+			multiCity,
 		} = this.state;
 		if (this.state.index === 0) {
 			this.props.requestTrip({
@@ -146,6 +210,8 @@ export class TripRequest extends Component {
 				accomodationId,
 				type: 'round trip',
 			});
+		} else if (this.state.index === 2) {
+			this.props.requestTrip(multiCity);
 		}
 		this.setState({
 			From: '',
@@ -153,14 +219,108 @@ export class TripRequest extends Component {
 			type: 'one way',
 			departureDate: `${new Date()}`,
 			returnDate: `${new Date()}`,
-			invalidReturnDate: '',
 			reason: '',
 			accomodationId: '',
+			multiCity: [
+				{
+					From: '',
+					To: '',
+					type: 'one way',
+					departureDate: `${new Date()}`,
+					reason: '',
+					accomodationId: '',
+				},
+				{
+					From: '',
+					To: '',
+					type: 'one way',
+					departureDate: `${new Date()}`,
+					reason: '',
+					accomodationId: '',
+				},
+			],
 		});
 		this.props.info.accommodations = '';
 	}
 	handleOncloseSnackbar() {
 		this.setState({ open: false });
+	}
+	handleAddMultiCityData(e) {
+		e;
+		this.setState({ submitted: true });
+		this.state.multiCity.push({
+			From: '',
+			To: '',
+			type: 'one way',
+			departureDate: `${new Date()}`,
+			reason: '',
+			accomodationId: '',
+		});
+	}
+	handleDeletemultiCityData = index => {
+		if (this.state.multiCity.length > 2) {
+			this.state.multiCity.splice(this.state.multiCity.indexOf(index), 1);
+			this.setState({ submitted: false });
+		}
+	};
+	handleChangeMultiCityData(e, number) {
+		const multiCityData = this.state.multiCity;
+		multiCityData.map((trip, i) => {
+			if (i === number) {
+				trip[e.target.name] = e.target.value;
+				this.setState({
+					activeIndex: number,
+				});
+				if (e.target.value === trip['From'] && e.target.value === trip['To']) {
+					trip['accomodationId'] = '';
+					trip['To'] = '';
+					this.props.info.accommodations = '';
+				} else if (e.target.name === 'To') {
+					if (multiCityData[i + 1]) {
+						multiCityData[i + 1].From = e.target.value;
+					}
+					this.props.GetAccomodations(e.target.value);
+				}
+			}
+		});
+		this.setState({
+			multiCity: multiCityData,
+			submitted: true,
+		});
+	}
+	handleChangeDateMultiCity(date, name, number) {
+		const multiCityData = this.state.multiCity;
+		let d = new Date(date),
+			month = '' + (d.getMonth() + 1),
+			day = '' + d.getDate(),
+			year = d.getFullYear();
+
+		if (month.length < 2) month = '0' + month;
+		if (day.length < 2) day = '0' + day;
+		let newDate = [year, month, day].join('-');
+		multiCityData.map((trip, i) => {
+			if (i === number) {
+				trip[name] = newDate;
+				this.setState({ activeIndex: number });
+			}
+		});
+		this.setState({
+			multiCity: multiCityData,
+		});
+	}
+	handleChangeAccomodationMultiCity(accommodation, number) {
+		if (accommodation) {
+			accommodation;
+			const multiCityData = this.state.multiCity;
+			multiCityData.map((trip, i) => {
+				if (number === i) {
+					trip['accomodationId'] = accommodation;
+				}
+			});
+			this.setState({
+				multiCity: multiCityData,
+			});
+		}
 	}
 	render() {
 		const { index } = this.state;
@@ -236,29 +396,124 @@ export class TripRequest extends Component {
 						<Tab label='Round Trip' />
 						<Tab label='Multi City Trip' />
 					</Tabs>
-					<OneWay
-						value={this.state}
-						onHandleChange={this.handleChange}
-						handleChangeDepartureDate={this.handleChangeDepartureDate}
-						handleChangeReturnDate={this.handleChangeReturnDate}
-					/>
+					{this.state.index !== 2 ? (
+						<OneWay
+							value={this.state}
+							onHandleChange={this.handleChange}
+							handleChangeDepartureDate={this.handleChangeDepartureDate}
+							handleChangeReturnDate={this.handleChangeReturnDate}
+							city={this.state}
+						/>
+					) : (
+						<Grid container>
+							<Grid item container>
+								<Box>
+									{this.state.multiCity.map((indexValue, i) => (
+										<div key={i}>
+											<Hidden lgDown>
+												<div style={Object.assign({}, styles.paperMultiCity)}>
+													<Grid item xs={12} md={12} xl={12} lg={12}>
+														<OneWay
+															value={this.state.multiCity[i]}
+															previousValue={
+																i > 0 ? this.state.multiCity[i - 1] : false
+															}
+															index={indexValue}
+															number={i}
+															multiCityDatalength={this.state.multiCity.length}
+															onHandleChange={this.handleChangeMultiCityData}
+															handleChangeDateMultiCity={
+																this.handleChangeDateMultiCity
+															}
+															handleDelete={this.handleDeletemultiCityData}
+															city={this.state}
+														/>
+													</Grid>{' '}
+												</div>
+											</Hidden>
+											<Hidden only='xl'>
+												<Paper style={Object.assign({}, styles.paper)}>
+													<Grid item xs={12} md={12} xl={12} lg={12}>
+														<OneWay
+															value={this.state.multiCity[i]}
+															previousValue={
+																i > 0 ? this.state.multiCity[i - 1] : false
+															}
+															index={indexValue}
+															number={i}
+															multiCityDatalength={this.state.multiCity.length}
+															onHandleChange={this.handleChangeMultiCityData}
+															handleChangeDateMultiCity={
+																this.handleChangeDateMultiCity
+															}
+															handleDelete={this.handleDeletemultiCityData}
+															city={this.state}
+														/>
+													</Grid>{' '}
+												</Paper>
+											</Hidden>
+										</div>
+									))}
+									<br />
+									<Grid>
+										<AddCircleRoundedIcon
+											style={{
+												fontSize: 25,
+												cursor: 'pointer',
+											}}
+											color='primary'
+											onClick={this.handleAddMultiCityData}
+										/>
+									</Grid>
+								</Box>
+							</Grid>
+						</Grid>
+					)}
 				</Paper>
 				<Paper style={Object.assign({}, styles.picture)}>
 					<Hidden lgDown>
-						<AdsPictures
-							value={this.state}
-							bigSize={true}
-							screenSize={this.props.width}
-							onClick={this.handleClick}
-							data-test='click'
-						/>
+						{this.state.index === 2 ? (
+							this.state.multiCity.map((index, i) => (
+								<AdsPictures
+									value={this.state.multiCity[i]}
+									bigSize={true}
+									index={true}
+									number={i}
+									onClick={this.handleChangeAccomodationMultiCity}
+									destination={this.state.destination}
+								/>
+							))[this.state.activeIndex]
+						) : (
+							<AdsPictures
+								value={this.state}
+								bigSize={true}
+								screenSize={this.props.width}
+								onClick={this.handleClick}
+								destination={this.state.destination}
+								data-test='click'
+							/>
+						)}
 					</Hidden>
 					<Hidden only='xl'>
-						<AdsPictures
-							value={this.state}
-							screenSize={this.props.width}
-							onClick={this.handleClick}
-						/>
+						{this.state.index === 2 ? (
+							this.state.multiCity.map((index, i) => (
+								<AdsPictures
+									value={this.state.multiCity[i]}
+									index={true}
+									screenSize={this.props.width}
+									number={i}
+									onClick={this.handleChangeAccomodationMultiCity}
+									destination={this.state.destination}
+								/>
+							))[this.state.activeIndex]
+						) : (
+							<AdsPictures
+								value={this.state}
+								screenSize={this.props.width}
+								onClick={this.handleClick}
+								destination={this.state.destination}
+							/>
+						)}
 					</Hidden>
 				</Paper>
 				{!this.props.isLoading ? (
@@ -267,20 +522,43 @@ export class TripRequest extends Component {
 						<Grid item xs={4} xl={5} lg={5}></Grid>
 						<Grid item md={8} xl={6} lg={6}>
 							<br />
-							<Button
-								variant='contained'
-								color='primary'
-								onClick={this.handleSubmit}
-								disabled={
-									!this.state.From ||
-									!this.state.To ||
-									!this.state.reason ||
-									!this.state.departureDate ||
-									(!this.state.accomodationId && true)
-								}
-							>
-								Create Request
-							</Button>
+							{this.state.index === 2 ? (
+								<Button
+									variant='contained'
+									color='primary'
+									onClick={this.handleSubmit}
+									disabled={this.state.multiCity.every(
+										(_, index) =>
+											!this.state.multiCity[index].From ||
+											!this.state.multiCity[index].To ||
+											!this.state.multiCity[index].accomodationId ||
+											!this.state.multiCity[index].reason ||
+											!this.state.multiCity[index].departureDate ||
+											!this.state.multiCity[index + 1].From ||
+											!this.state.multiCity[index + 1].To ||
+											!this.state.multiCity[index + 1].accomodationId ||
+											!this.state.multiCity[index + 1].reason ||
+											(!this.state.multiCity[index + 1].departureDate && true),
+									)}
+								>
+									Create Request
+								</Button>
+							) : (
+								<Button
+									variant='contained'
+									color='primary'
+									onClick={this.handleSubmit}
+									disabled={
+										!this.state.From ||
+										!this.state.To ||
+										!this.state.reason ||
+										!this.state.departureDate ||
+										(!this.state.accomodationId && true)
+									}
+								>
+									Create Request
+								</Button>
+							)}
 						</Grid>{' '}
 					</Grid>
 				) : (
