@@ -77,4 +77,12 @@ describe('Top navigation bar component', () => {
 		const location = wrapper.state().location;
 		expect(location).toBe('/trips-stats');
 	});
-});
+	it('should handle onclick event of accommodations link', () => {
+		const wrapper = shallow(<NavLinks />);
+		wrapper.setState({role:'admin'});
+		wrapper.find('#accommodations').simulate('click');
+		const location = wrapper.state().location;
+		expect(location).toBe('/create-accommodations');
+	});
+
+})

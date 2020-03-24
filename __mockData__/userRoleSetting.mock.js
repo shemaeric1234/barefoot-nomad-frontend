@@ -2,7 +2,6 @@ import {GET_USERS,SETTING_ROLES_SUCESS,SETTING_ROLES_FAILURE} from '../src/actio
 
 export const props = {
 	result: 
-		// UserSettingReducer: {
 			  [
 				{
 					id: 2,
@@ -14,7 +13,6 @@ export const props = {
 					updatedAt: '2020-02-19T18:37:03.240Z',
 				},
 			 ],
-		// },
 	
 	isLoading: false,
 	role:'manager',

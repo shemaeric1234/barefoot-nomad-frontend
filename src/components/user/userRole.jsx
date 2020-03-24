@@ -62,7 +62,6 @@ export class UserRoleSetting extends Component {
 	}
 
 	UNSAFE_componentWillMount() {
-
 		const token = localStorage.getItem('token');
 		const user = verifyToken(token);
 		if (user.payload.role !== 'admin') {
@@ -378,6 +377,7 @@ export class UserRoleSetting extends Component {
 																getOptionLabel={option => option.role}
 																defaultValue={roles[3].role}
 																onChange={(e, value) => {
+																	
 																	if (row.role === 'manager') {
 																		this.setState({
 																			openModal: true,
@@ -507,12 +507,12 @@ export class UserRoleSetting extends Component {
 	}
 }
 const roles = [
-	{ role: 'Travel admin' },
-	{ role: 'Travel team ' },
-	{ role: 'Manager' },
-	{ role: 'Requester' },
+	{ role: 'travel admin' },
+	{ role: 'travel team ' },
+	{ role: 'manager' },
+	{ role: 'requester' },
 	{ role: 'supplier' },
-	{ role: 'Admin' },
+	{ role: 'admin' },
 ];
 export const mapStateToProps = state => {
 	return {

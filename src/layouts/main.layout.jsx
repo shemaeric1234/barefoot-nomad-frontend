@@ -19,6 +19,8 @@ import TripRequest from "../views/triprequest.view.jsx";
 import ApprovalTable from "../components/approvals_table/approval.table.jsx";
 import ApprovalsTripRequest from "../components/approvals_table/trip.request.jsx";
 import UserStatistics from "../components/UserStatistics.jsx";
+import AccommodationFacility from '../views/creating_accommodation_facilities/AccommodationFacility.jsx'
+import CreateAccommodation from '../views/creating_accommodation_facilities/CreateAccommodation.jsx'
 
 const drawerWidth = 240;
 
@@ -138,6 +140,8 @@ const MainLayout = props => {
             <Route path="/make-trip-request" exact component={TripRequest} />
             <Route path="/approval-table" component={ApprovalTable} />
             <Route path="/trip-request" component={ApprovalsTripRequest} />
+            <Route path='/accommodations' component={AccommodationFacility} />
+						<Route path='/create-accommodations' component={CreateAccommodation} />
           </Switch>
         </main>
       </div>

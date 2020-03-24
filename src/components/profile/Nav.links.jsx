@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
-import { Link, withRouter } from "react-router-dom";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
-import { Divider, Typography, Collapse, List } from "@material-ui/core";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import { Link, withRouter } from 'react-router-dom';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
+import { Divider, Typography, Collapse, List } from '@material-ui/core';
+import PersonIcon from '@material-ui/icons/Person';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import verifyToken from '../../helpers/tokenHelper';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import DoneAllOutlinedIcon from '@material-ui/icons/DoneAllOutlined';
+import HotelIcon from '@material-ui/icons/Hotel';
 import EqualizerIcon from "@material-ui/icons/Equalizer";
 import EditIcon from "@material-ui/icons/Edit";
-import { makeStyles } from "@material-ui/core/styles";
-import PersonIcon from "@material-ui/icons/Person";
-import verifyToken from "../../helpers/tokenHelper";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import DoneAllOutlinedIcon from "@material-ui/icons/DoneAllOutlined";
 
 const useStyles = theme => ({
   isActive: {
@@ -206,6 +206,27 @@ export class NavLinks extends Component {
             </Link>
           </ListItemText>
         </ListItem>
+        {this.state.role==='admin' || this.state.role ==='travel admin'?(
+				<ListItem 
+						button
+							id='accommodations'
+							selected={this.isActive('/create-accommodations')}
+							button
+							onClick={() =>
+								this.setState({ location: '/create-accommodations' })
+							}
+					
+				>
+					<ListItemIcon>
+					<HotelIcon/>
+					</ListItemIcon>
+					
+				<ListItemText>
+						<Link to='/create-accommodations' style={{ textDecoration: 'none' }}>
+							<Typography style={{fontSize:'20px'}}>Accommodations</Typography>
+						</Link>
+					</ListItemText>
+					</ListItem>):''}
       </Grid>
     );
   }

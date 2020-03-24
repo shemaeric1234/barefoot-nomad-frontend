@@ -13,6 +13,7 @@ import userManagementReducer from "./userManagementReducers";
 import tripRequestReducer from "./tripRequestReducer";
 import approvalsTableReducer from "./approval.table.reducer";
 import tripStatisticsReducer from "./tripStatisticsReducer";
+import accommodationFacilitiesReducer from './AccommodationFacilityReducer';
 
 export default combineReducers({
   appReducer,
@@ -29,5 +30,6 @@ export default combineReducers({
   userManagementReducer,
   tripRequestReducer,
   approvalsTableReducer,
-  tripStatisticsReducer
+  tripStatisticsReducer,
+  accommodationFacilitiesReducer
 });
