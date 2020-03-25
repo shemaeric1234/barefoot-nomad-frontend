@@ -358,7 +358,7 @@ export class AccommodationFacility extends Component {
 												onChange={this.handleChange.bind(this)}
 												required
 											/>
-											 <Box m={6} />
+											 <Box m={4} />
 											<TextField
 												name='description'
 												type='name'
@@ -369,13 +369,12 @@ export class AccommodationFacility extends Component {
 												variant='outlined'
 												onChange={this.handleChange.bind(this)}
 											/>
-											 <Box m={6} />
+											 <Box m={4} />
 											<Autocomplete
 												data-test='accommodation-location-field'
 												id='combo-box-demo'
 												options={rows}
 												getOptionLabel={option => option.city}
-												style={{ width: 300 }}
 												onChange={(e, value) => {
 													this.setState({
 														locationId: value.id,
@@ -396,7 +395,6 @@ export class AccommodationFacility extends Component {
 												id='combo-box-demo'
 												options={Categories}
 												getOptionLabel={option => option.title}
-												style={{ width: 300 }}
 												onChange={(e, value) => {
 													this.setState({
 														category: value.title,
@@ -497,7 +495,7 @@ export class AccommodationFacility extends Component {
 												onChange={this.handleChange.bind(this)}
 												required
 											/>
-											 <Box m={6} />
+											 <Box m={4} />
 											<TextField
 												name='description'
 												type='name'
@@ -508,13 +506,13 @@ export class AccommodationFacility extends Component {
 												variant='outlined'
 												onChange={this.handleChange.bind(this)}
 											/>
-											 <Box m={6} />
+											 <Box m={4} />
 											<Autocomplete
 												data-test='accommodation-location-field'
-												id='combo-box-demo'
 												options={rows}
+												className={classes.Autocomplete}
+
 												getOptionLabel={option => option.city}
-												style={{ width: 300 }}
 												onChange={(e, value) => {
 													this.setState({
 														locationId: value.id,
@@ -532,10 +530,9 @@ export class AccommodationFacility extends Component {
 											<Box m={4} />
 											<Autocomplete
 												data-test='accommodation-category-field'
-												id='combo-box-demo'
+												className={classes.Autocomplete}
 												options={Categories}
 												getOptionLabel={option => option.title}
-												style={{ width: 300 }}
 												onChange={(e, value) => {
 													this.setState({
 														category: value.title,

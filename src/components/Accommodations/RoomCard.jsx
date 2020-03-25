@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import { Styles } from '../../styles/createAccommodation';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -76,8 +75,8 @@ export class RoomCard extends Component {
 							id='roomType'
 							data-test='roomType-field'
 							options={this.props.AcccommodationTypes}
+							className={classes.Autocomplete}
 							getOptionLabel={option => option.name}
-							style={{ width: 300 }}
 							onChange={(e, value) => {
 								const name = 'typeId';
 								this.props.handleChangeRooms(
@@ -120,7 +119,7 @@ export class RoomCard extends Component {
 							options={Currencies}
 							data-test='currency-field'
 							getOptionLabel={option => option.name}
-							style={{ width: 300 }}
+							className={classes.Autocomplete}
 							onChange={(e, value) => {
 								const name = 'currency';
 								this.props.handleChangeRooms(
@@ -151,11 +150,6 @@ export class RoomCard extends Component {
 							{this.props.RoomImagesResult &&
 								this.props.RoomImagesResult.map((data, index) => {
 									{
-										{/* const event = {
-											target: {
-												id: '',
-											},
-										}; */}
 								this.props.rooms[data.cardId].roomTypeImageUrl=data.Image;
 										if (data.cardId === this.props.index) {
 										

@@ -11,6 +11,7 @@ export const Styles = theme => ({
 		width: '433.09px',
 		minHeight: '495.38px',
 		marginLeft: '30%',
+		padding:"50px ",
 
 		['@media (max-width:1024px)']: {
 			marginLeft: '0%',
@@ -24,6 +25,7 @@ export const Styles = theme => ({
 		minWidth: '433.09px',
 		minHeight: '495.38px',
 		marginLeft: '30%',
+		padding:"50px ",
 
 		['@media (max-width:1024px)']: {
 			marginLeft: '0',
@@ -36,7 +38,7 @@ export const Styles = theme => ({
 		},
 	},
 	inputField: {
-		width: '300px',
+		width: '100%',
 		height: '40px',
 	},
 	inputFieldAmenities: {
@@ -60,14 +62,12 @@ export const Styles = theme => ({
 		  },
 	},
 	Form: {
-		marginLeft: '15%',
 		['@media (max-width:1025px)']: {
 			marginLeft: '13%',
 		},
 
 	},
 	RoomForm: {
-		marginLeft: '15%',
 		marginTop: '5%',
 		['@media (max-width:1280px)']: {
 			marginLeft: '13%',
@@ -148,4 +148,5 @@ export const Styles = theme => ({
 			marginLeft: '694px',
 		},
 	},
+
 });

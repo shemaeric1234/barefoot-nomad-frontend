@@ -7,22 +7,26 @@
 Barefoot Nomad is an application that will enable its "Company Nomads" book their international travel and accommodation globally, easily and conveniently across all the locations/centers where the company has its operation.
 
 ## Technologies used:
-- React JS
-- Webpack
-- Node JS
+- Environment : [Nodejs](https://nodejs.org/)
+- Package Manager : [NPM](https://www.npmjs.com)
+- Compiler : [Babel](https://babeljs.io/)
+- Bundler : [Webpack](https://webpack.js.org/)
+- CSS Pre processor : [Sass](https://sass-lang.com)
+- Client Side : [Reactjs](https://reactjs.org),[Redux](https://redux.js.org)
 
 ## Setting up the application:
-Clone the project repo to your preferred location
-```https://github.com/andela/blackninjas-frontend.git```
+1. From your computer, open terminal 
+2. Run `clone https://github.com/andela/blackninjas-frontend.git` OR [Download](https://github.com/andela/blackninjas-frontend/archive/develop.zip) the project
 
-Install npm dependencies
+### Run commands
+Open terminal from your computer
+1. Run `npm install` to install all dependencies
+2. Run `npm test` to test automatically if the is functioning properly as expected
+3. Run `npm run start-dev` to run the app in development environment
+4. To build the app and run app in production, run `npm run build` & to start the app, run `npm start`
 
-```$ npm install```
-
-## To run the App in production:
-Build the project with ```npm run build```
-
-Start the built project with ```npm start```
+### Raising an issue
+Click [here](https://github.com/andela/blackninjas-frontend/issues/new) to create an issue about this app
 
 ## Author:
 Team Blackninjas
