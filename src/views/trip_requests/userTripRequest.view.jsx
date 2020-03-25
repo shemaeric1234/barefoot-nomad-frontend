@@ -182,6 +182,8 @@ export const Request = props => {
 											'Approved'.toLowerCase()
 									) {
 										props.history.push('/booking');
+									} else {
+										props.history.push('/make-trip-request');
 									}
 								}}
 							>

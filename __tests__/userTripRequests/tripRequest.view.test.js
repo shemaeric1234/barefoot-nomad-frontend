@@ -105,6 +105,11 @@ describe('Render trip request ui', () => {
 			.first()
 			.props()
 			.onClick();
+		const btn_edit_trip = wrapper1.find('#btn_edit_booking').at(1);
+		btn_edit_trip
+			.first()
+			.props()
+			.onClick();
 	});
 	it('should return collect trip type', () => {
 		expect(normalizeType('multi-city')).toEqual('Multiple cities trip');

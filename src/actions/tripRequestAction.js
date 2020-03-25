@@ -19,14 +19,41 @@ export const requestTrip = data => async dispatch => {
 	return await axios
 		.post(`${process.env.BACKEND_BASE_URL}/api/v1/trips`, data, { headers })
 		.then(response => {
-			const request = response.data.data;
+			const trip_request = response.data.data;
 			dispatch({ type: 'LOADING', payload: false });
-			dispatch(success(request));
+			dispatch(success(trip_request));
 		})
 		.catch(error => {
 			const errorData = error.response.data;
 			dispatch({ type: 'LOADING', payload: false });
 			dispatch(failure(errorData));
+		});
+};
+
+export const editTripRequest = (data, tripId) => async dispatch => {
+	dispatch({ type: 'LOADING', payload: true });
+	return await axios
+		.patch(`${process.env.BACKEND_BASE_URL}/api/v1/trips/${tripId}`, data, {
+			headers,
+		})
+		.then(response => {
+			const trip_request = response.data.data;
+			dispatch({ type: 'LOADING', payload: false });
+			dispatch({
+				type: REQUEST_TRIP_SUCCESS,
+				payload: trip_request,
+				message: 'Trip request has been successfully edited',
+			});
+		})
+		.catch(error => {
+			const errorData = error.response.data;
+			dispatch({ type: 'LOADING', payload: false });
+			dispatch({
+				type: REQUEST_TRIP_FAILURE,
+				payload: errorData,
+				message:
+					'Trip cannot be edited at moment, check provided info and Try Again !!',
+			});
 		});
 };
 

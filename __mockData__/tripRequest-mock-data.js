@@ -4,6 +4,9 @@ export const props = {
 			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkI…A0MH0.oMzzh3sFKmdHNp0izkG5aoiaKdn47GOg1vXho1ELy5Q',
 		error: 'user not found!',
 	},
+	tripRequestsReducers: {
+		tripToEdit: '',
+	},
 	appReducer: {
 		isLoading: false,
 	},
@@ -63,4 +66,5 @@ export const props = {
 	GetAccomodations: jest.fn(),
 	requestTrip: jest.fn(),
 	onClick: jest.fn(),
+	editTripRequest: jest.fn(),
 };

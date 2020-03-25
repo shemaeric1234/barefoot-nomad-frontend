@@ -14,6 +14,11 @@ const getUserTripRequestsReducer = (
 				...state,
 				trip: action.payload,
 			};
+		case 'SET_TRIP_TO_EDIT':
+			return {
+				...state,
+				tripToEdit: action.payload,
+			};
 		default:
 			return state;
 	}

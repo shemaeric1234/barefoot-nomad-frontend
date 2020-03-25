@@ -21,6 +21,29 @@ const setUp = (initialState = {}) => {
 	const wrapper = shallow(<TripRequest {...props} store={store} />);
 	return wrapper;
 };
+const setUpEditTrip = (initialState = {}) => {
+	const store = testStore(initialState);
+	props.trip = [
+		{
+			reason: 'traveling',
+			accomodationId: 3,
+			From: 1,
+			To: 4,
+			type: 'one way',
+			departureDate: `${new Date(2013, 0, 2)}`,
+		},
+		{
+			reason: 'traveling',
+			accomodationId: 3,
+			From: 4,
+			To: 6,
+			type: 'one way',
+			departureDate: `${new Date(2016, 0, 2)}`,
+		},
+	];
+	const wrapper = shallow(<TripRequest {...props} store={store} />);
+	return wrapper;
+};
 
 describe('Trip Request component tests', () => {
 	it('should render successfully all breaks found in Trip Request view page', () => {
@@ -260,12 +283,80 @@ describe('Trip Request component tests', () => {
 			To: '',
 			type: 'one way',
 			departureDate: `${new Date(2013, 0, 2)}`,
+			multiCity: [
+				{
+					reason: 'traveling',
+					accomodationId: 3,
+					From: 1,
+					To: 4,
+					type: 'one way',
+					departureDate: `${new Date(2013, 0, 2)}`,
+				},
+				{
+					reason: 'traveling',
+					accomodationId: 3,
+					From: 4,
+					To: 6,
+					type: 'one way',
+					departureDate: `${new Date(2016, 0, 2)}`,
+				},
+			],
 		});
 		component
 			.find('WithStyles(ForwardRef(Button))')
 			.at(1)
 			.props()
 			.onClick();
+	});
+	it('should simulate that onclick save button is clicked', () => {
+		const component = setUpEditTrip();
+		component.setState({
+			index: 2,
+			submitted: false,
+		});
+		component
+			.find('WithStyles(ForwardRef(Button))')
+			.props()
+			.onClick();
+		expect(component.state('multiCity')[1].type).toEqual('multi-city');
+	});
+	it('should simulate that onclick button has been successfully when multi city trip edit request is submitted', () => {
+		const component = setUp();
+		component.setState({
+			index: 2,
+			submitted: false,
+			trip: true,
+			buttonState: false,
+			reason: 'traveling',
+			accomodationId: 3,
+			From: 1,
+			To: 4,
+			type: 'one way',
+			departureDate: `${new Date(2013, 0, 2)}`,
+			multiCity: [
+				{
+					reason: 'traveling',
+					accomodationId: 3,
+					From: 1,
+					To: 4,
+					type: 'one way',
+					departureDate: `${new Date(2013, 0, 2)}`,
+				},
+				{
+					reason: 'traveling',
+					accomodationId: 3,
+					From: 4,
+					To: 6,
+					type: 'one way',
+					departureDate: `${new Date(2016, 0, 2)}`,
+				},
+			],
+		});
+		component
+			.find('WithStyles(ForwardRef(Button))')
+			.props()
+			.onClick();
+		expect(component.state('multiCity')[1].type).toEqual('multi-city');
 	});
 	it('should handle change successfully while creating multi city trip request', () => {
 		const component = setUp();

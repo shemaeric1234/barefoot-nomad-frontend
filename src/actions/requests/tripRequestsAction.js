@@ -25,5 +25,16 @@ export const getUserTripRequestsAction = props => async dispatch => {
 	}
 };
 export const setSelectedTripRequestAction = props => async dispatch => {
+	const token = localStorage.getItem('token');
 	dispatch({ type: 'SET_SELLECTED_TRIP', payload: props });
+	const results = await axios.get(
+		`${process.env.BACKEND_BASE_URL}/api/v1/trip-requests/${props[0].tripId}/${token}`,
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				token: `Bearer ${token}`,
+			},
+		},
+	);
+	dispatch({ type: 'SET_TRIP_TO_EDIT', payload: results.data.data.trips });
 };
