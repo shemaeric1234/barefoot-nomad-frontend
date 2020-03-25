@@ -24,6 +24,8 @@ import {
 	uploadNewImageOnCloud,
 } from '../../actions/user.profile.action';
 import { Link } from 'react-router-dom';
+import Footer from "../common/footer";
+
 
 const theme = createMuiTheme({
 	palette: {
@@ -457,6 +459,9 @@ export class Profile extends Component {
 						</ThemeProvider>
 					</Card>
 				)}
+
+				<Footer/>
+
 			</>
 		);
 	}

@@ -36,6 +36,8 @@ import Moment from 'react-moment';
 import verifyToken from '../../helpers/tokenHelper';
 import { log } from 'util';
 import { Toolbar } from '@material-ui/core';
+import Footer from "../common/footer";
+
 
 export const history = createBrowserHistory({
 	forceRefresh: true,
@@ -502,6 +504,7 @@ export class UserRoleSetting extends Component {
 						</Hidden>
 					</Grid>
 				</Paper>
+				<Footer /> 
 			</div>
 		);
 	}

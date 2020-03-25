@@ -21,6 +21,7 @@ import ApprovalsTripRequest from "../components/approvals_table/trip.request.jsx
 import UserStatistics from "../components/UserStatistics.jsx";
 import AccommodationFacility from '../views/creating_accommodation_facilities/AccommodationFacility.jsx'
 import CreateAccommodation from '../views/creating_accommodation_facilities/CreateAccommodation.jsx'
+import Footer from "../components/common/footer";
 
 const drawerWidth = 240;
 
@@ -71,6 +72,7 @@ const MainLayout = props => {
     </div>
   );
   return (
+    <>
     <Router>
       <div className={classes.root}>
         <AppBar
@@ -146,6 +148,8 @@ const MainLayout = props => {
         </main>
       </div>
     </Router>
+    {/* <Footer /> */}
+    </>
   );
 };
 

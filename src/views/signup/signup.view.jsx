@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Grid, Box, useMediaQuery, Hidden } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import signupAction, { setErrorAction } from '../../actions/signupAction';
 import SignupForm from '../../components/signup/signup_form.component.jsx';
-
+import { createBrowserHistory } from 'history';
+export const history = createBrowserHistory({
+	forceRefresh: true,
+});
 export const Signup = (props) => {
 
     const [values, setValues] = useState({
@@ -25,6 +28,13 @@ export const Signup = (props) => {
 
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
+    useEffect(() => {
+
+const token = localStorage.getItem('token');
+if(token !== null){
+	history.push('/');
+}
+      });
 
     return (
         <Box>

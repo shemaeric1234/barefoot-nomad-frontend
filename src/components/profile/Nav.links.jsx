@@ -223,7 +223,7 @@ export class NavLinks extends Component {
 					
 				<ListItemText>
 						<Link to='/create-accommodations' style={{ textDecoration: 'none' }}>
-							<Typography style={{fontSize:'20px'}}>Accommodations</Typography>
+							<Typography >Accommodations</Typography>
 						</Link>
 					</ListItemText>
 					</ListItem>):''}
