@@ -85,4 +85,12 @@ describe('Top navigation bar component', () => {
 		expect(location).toBe('/create-accommodations');
 	});
 
-})
+
+	it('should handle onclick event of dashboard link', () => {
+		const wrapper = shallow(<NavLinks />);
+
+		wrapper.find('#dashboard').simulate('click');
+		const location = wrapper.state().location;
+		expect(location).toBe('/');
+	});
+});

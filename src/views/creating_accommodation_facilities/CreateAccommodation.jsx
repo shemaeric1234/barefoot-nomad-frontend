@@ -177,7 +177,6 @@ export class AccommodationFacility extends Component {
 		const rooms = this.state.rooms;
 		rooms.map((room, index) => {
 			if (index === Index1) {
-				console.log('====>>>>',room);
 				if (event.target.id !== 'standard-search') {
 					room[name] = value;
 				}

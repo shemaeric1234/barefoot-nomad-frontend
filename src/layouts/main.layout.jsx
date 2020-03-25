@@ -22,6 +22,7 @@ import UserStatistics from "../components/UserStatistics.jsx";
 import AccommodationFacility from '../views/creating_accommodation_facilities/AccommodationFacility.jsx'
 import CreateAccommodation from '../views/creating_accommodation_facilities/CreateAccommodation.jsx'
 import Footer from "../components/common/footer";
+import Dashboard from '../views/dashboard/userDashboard.view.jsx';
 
 const drawerWidth = 240;
 
@@ -131,13 +132,14 @@ const MainLayout = props => {
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-
+          
           <Switch>
+          <Route path="/" exact component={Dashboard} />
             <Route path="/profile" exact component={Profile} />
             <Route path="/trips/:id" component={Request} />
             <Route path="/trips" component={Requests} />
             <Route path="/trips-stats" component={UserStatistics} />
-			<Route path='/user/user-role-setting' component={UserRoleSetting} />
+			      <Route path='/user/user-role-setting' component={UserRoleSetting} />
             <Route path="/user-management" component={UserManagement} />
             <Route path="/make-trip-request" exact component={TripRequest} />
             <Route path="/approval-table" component={ApprovalTable} />

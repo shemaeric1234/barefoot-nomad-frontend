@@ -38,8 +38,8 @@ export const mapThroughTripTypes = details => {
   });
   return details;
 };
-const UserStatistics = () => {
-  const [selectedDate, setSelectedDate] = useState("2020-03-13");
+const UserStatistics = (props) => {
+  const [selectedDate, setSelectedDate] = useState(props.currentDate?props.currentDate:"2020-03-13");
   const statistics = useSelector(
     state => state.tripStatisticsReducer.statistics
   );
@@ -57,7 +57,8 @@ const UserStatistics = () => {
   const { totalTrips, details: tripDetails } = statistics;
   const details = tripDetails && mapThroughTripTypes(tripDetails);
   return (
-    <>
+    <> 
+    {props.displayDatePicker?null:
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container className={classes.grid}>
           <KeyboardDatePicker
@@ -77,7 +78,7 @@ const UserStatistics = () => {
             }}
           />
         </Grid>
-      </MuiPickersUtilsProvider>
+      </MuiPickersUtilsProvider>}
       <p className={classes.title}>
         Total trips created:{" "}
         <span className={classes.span}>

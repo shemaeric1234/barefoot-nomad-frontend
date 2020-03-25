@@ -15,7 +15,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import DoneAllOutlinedIcon from '@material-ui/icons/DoneAllOutlined';
 import HotelIcon from '@material-ui/icons/Hotel';
 import EqualizerIcon from "@material-ui/icons/Equalizer";
-import EditIcon from "@material-ui/icons/Edit";
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const useStyles = theme => ({
   isActive: {
@@ -53,6 +53,24 @@ export class NavLinks extends Component {
         container
         style={{ width: "100%", backgroundColor: "white", marginTop: "15px" }}
       >
+        <Divider />
+        <ListItem
+          id="dashboard"
+          selected={this.isActive("/")}
+          button
+          onClick={() => this.setState({ location: "/" })}
+        >
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Typography style={{ fontSize: this.state.fontSize }}>
+                Dashboard
+              </Typography>
+            </Link>
+          </ListItemText>
+        </ListItem>
         <Divider />
         <ListItem
           id="trips"
