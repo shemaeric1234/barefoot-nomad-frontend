@@ -13,6 +13,7 @@ import ResetNotification from '../components/password/passwordNotification.jsx';
 import { ResetNofiticationSucess } from '../components/password/passwordNotification.jsx';
 import Confirm from '../views/signup/confirm.view.jsx';
 import ActivateUser from '../views/signup/activate_user.view.jsx';
+import NotFound from '../views/404.view.jsx';
 
 
 class DefaultLayout extends PureComponent {
@@ -44,10 +45,11 @@ class DefaultLayout extends PureComponent {
 							exact
 							component={ResetNofiticationSucess}
 						/>
-						<Route path='/auth/signup' component={Signup} />
-						<Route path='/auth/signin' component={Signin} />
-						<Route path='/auth/confirm' component={Confirm} />
-						<Route path='/auth/activate' component={ActivateUser} />
+						<Route exact path='/auth/signup' component={Signup} />
+						<Route exact path='/auth/signin' component={Signin} />
+						<Route exact path='/auth/confirm' component={Confirm} />
+						<Route exact path='/auth/activate' component={ActivateUser} />
+						<Route component={NotFound} />
 					</Switch>
 				</Router>
 			</div>

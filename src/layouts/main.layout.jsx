@@ -24,6 +24,7 @@ import CreateAccommodation from '../views/creating_accommodation_facilities/Crea
 import Footer from "../components/common/footer";
 import Dashboard from '../views/dashboard/userDashboard.view.jsx';
 import Booking from '../views/accommodations/booking.view.jsx';
+import NotFound from '../views/404.view.jsx';
 
 const drawerWidth = 240;
 
@@ -148,6 +149,7 @@ const MainLayout = props => {
               <Route path='/accommodations' component={AccommodationFacility} />
               <Route path='/create-accommodations' component={CreateAccommodation} />
               <Route path='/booking/:id' component={Booking} />
+              <Route component={NotFound} />
             </Switch>
           </main>
         </div>
