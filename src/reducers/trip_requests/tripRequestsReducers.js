@@ -19,6 +19,19 @@ const getUserTripRequestsReducer = (
 				...state,
 				tripToEdit: action.payload,
 			};
+		case 'UPDATE_TRIP_BOOKING_INFO':
+			return {
+				...state,
+				myTrips: [...state.myTrips.map(item => {
+					return item.map(trip => {
+						if (trip.id == action.payload.id) {
+							trip.accomodation = action.payload.accomodation;
+							trip.booking.push(action.payload);
+						}
+						return trip;
+					})
+				})],
+			}
 		default:
 			return state;
 	}

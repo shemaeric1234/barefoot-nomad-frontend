@@ -7,4 +7,45 @@ body,
 .view_container {
 	height: 100vh;
 	background-color: white;
+	overflow-x: hidden;
+}
+
+.booking_grid_scroll{
+	max-height: 80vh;
+}
+
+.booking_list_scroll{
+	height: 87vh;
+}
+
+.booking_list_scroll2{
+	height: 75vh;
+}
+
+.hover_event{
+	cursor: pointer;
+}
+
+.row{
+	width: 760px;
+	overflow-x: scroll;
+}
+
+@media screen and (max-width: 450px) {
+	.row{
+		width: 295px;
+	}
+}
+
+@media(min-width: 400px) and (max-width: 450px) {
+	.row{
+		width: 331px;
+	}
+}
+
+.modal-2{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
 }

@@ -23,7 +23,7 @@ export const getUsers = () => async dispatch => {
 		dispatch(getUsersAction(users.data.data.rows));
 		dispatch({ type: 'LOADING_DATA', payload: false });
 		return users.data.data.rows;
-	} catch (error) {}
+	} catch (error) { }
 };
 export const updateUserRole = ({ userId, role }) => async dispatch => {
 	dispatch({ type: 'LOADING', payload: true });

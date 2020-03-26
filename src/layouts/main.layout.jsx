@@ -23,6 +23,7 @@ import AccommodationFacility from '../views/creating_accommodation_facilities/Ac
 import CreateAccommodation from '../views/creating_accommodation_facilities/CreateAccommodation.jsx'
 import Footer from "../components/common/footer";
 import Dashboard from '../views/dashboard/userDashboard.view.jsx';
+import Booking from '../views/accommodations/booking.view.jsx';
 
 const drawerWidth = 240;
 
@@ -74,83 +75,84 @@ const MainLayout = props => {
   );
   return (
     <>
-    <Router>
-      <div className={classes.root}>
-        <AppBar
-          position="fixed"
-          style={{ backgroundColor: "white", boxShadow: `${appBarCss}` }}
-          className={classes.appBar}
-        >
-          <Toolbar>
-            <IconButton
-              id="IconButton"
-              color="primary"
-              aria-label="open drawer"
-              edge="start"
-              onClick={() => {
-                setMobileOpen(!mobileOpen);
-              }}
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-            <TopNavBar />
-          </Toolbar>
-        </AppBar>
-        <nav className={classes.drawer} aria-label="mailbox folders">
-          <Hidden smUp implementation="css">
-            <Drawer
-              id="Drawer"
-              container={container}
-              variant="temporary"
-              anchor={theme.direction === "rtl" ? "right" : "left"}
-              open={mobileOpen}
-              onClose={() => {
-                setMobileOpen(!mobileOpen);
-              }}
-              classes={{
-                paper: classes.drawerPaper
-              }}
-              ModalProps={{
-                keepMounted: true
-              }}
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            <Drawer
-              classes={{
-                paper: classes.drawerPaper
-              }}
-              variant="permanent"
-              open
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-        </nav>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          
-          <Switch>
-          <Route path="/" exact component={Dashboard} />
-            <Route path="/profile" exact component={Profile} />
-            <Route path="/trips/:id" component={Request} />
-            <Route path="/trips" component={Requests} />
-            <Route path="/trips-stats" component={UserStatistics} />
-			      <Route path='/user/user-role-setting' component={UserRoleSetting} />
-            <Route path="/user-management" component={UserManagement} />
-            <Route path="/make-trip-request" exact component={TripRequest} />
-            <Route path="/approval-table" component={ApprovalTable} />
-            <Route path="/trip-request" component={ApprovalsTripRequest} />
-            <Route path='/accommodations' component={AccommodationFacility} />
-						<Route path='/create-accommodations' component={CreateAccommodation} />
-          </Switch>
-        </main>
-      </div>
-    </Router>
-    {/* <Footer /> */}
+      <Router>
+        <div className={classes.root}>
+          <AppBar
+            position="fixed"
+            style={{ backgroundColor: "white", boxShadow: `${appBarCss}` }}
+            className={classes.appBar}
+          >
+            <Toolbar>
+              <IconButton
+                id="IconButton"
+                color="primary"
+                aria-label="open drawer"
+                edge="start"
+                onClick={() => {
+                  setMobileOpen(!mobileOpen);
+                }}
+                className={classes.menuButton}
+              >
+                <MenuIcon />
+              </IconButton>
+              <TopNavBar />
+            </Toolbar>
+          </AppBar>
+          <nav className={classes.drawer} aria-label="mailbox folders">
+            <Hidden smUp implementation="css">
+              <Drawer
+                id="Drawer"
+                container={container}
+                variant="temporary"
+                anchor={theme.direction === "rtl" ? "right" : "left"}
+                open={mobileOpen}
+                onClose={() => {
+                  setMobileOpen(!mobileOpen);
+                }}
+                classes={{
+                  paper: classes.drawerPaper
+                }}
+                ModalProps={{
+                  keepMounted: true
+                }}
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              <Drawer
+                classes={{
+                  paper: classes.drawerPaper
+                }}
+                variant="permanent"
+                open
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+          </nav>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+
+            <Switch>
+              <Route path="/" exact component={Dashboard} />
+              <Route path="/profile" exact component={Profile} />
+              <Route path="/trips/:id" component={Request} />
+              <Route path="/trips" component={Requests} />
+              <Route path="/trips-stats" component={UserStatistics} />
+              <Route path='/user/user-role-setting' component={UserRoleSetting} />
+              <Route path="/user-management" component={UserManagement} />
+              <Route path="/make-trip-request" exact component={TripRequest} />
+              <Route path="/approval-table" component={ApprovalTable} />
+              <Route path="/trip-request" component={ApprovalsTripRequest} />
+              <Route path='/accommodations' component={AccommodationFacility} />
+              <Route path='/create-accommodations' component={CreateAccommodation} />
+              <Route path='/booking/:id' component={Booking} />
+            </Switch>
+          </main>
+        </div>
+      </Router>
+      {/* <Footer /> */}
     </>
   );
 };

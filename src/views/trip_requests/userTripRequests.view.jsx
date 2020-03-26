@@ -95,8 +95,8 @@ export const Requests = props => {
 		return status === 'pending'
 			? '#FBBC05'
 			: status === 'approved'
-			? '#34A853'
-			: '#E10050';
+				? '#34A853'
+				: '#E10050';
 	};
 
 	return (
@@ -193,8 +193,8 @@ export const Requests = props => {
 															{row[0].departureDate}
 														</Moment>
 													) : (
-														'-'
-													)}
+															'-'
+														)}
 												</TableCell>
 												<TableCell align='right'>
 													{`${row[0].returnDate}` != 'null' ? (
@@ -202,8 +202,8 @@ export const Requests = props => {
 															{row[0].returnDate}
 														</Moment>
 													) : (
-														'-'
-													)}
+															'-'
+														)}
 												</TableCell>
 											</TableRow>
 										);
@@ -292,8 +292,8 @@ export const Requests = props => {
 														{item[0].departureDate != null ? (
 															<Moment format='D MMM YYYY'>{`${item[0].departureDate}`}</Moment>
 														) : (
-															'-'
-														)}
+																'-'
+															)}
 													</Grid>
 												</Grid>
 												<Grid item container justify='space-between'>
@@ -310,8 +310,8 @@ export const Requests = props => {
 																{item[0].returnDate}
 															</Moment>
 														) : (
-															'-'
-														)}
+																'-'
+															)}
 													</Grid>
 												</Grid>
 											</Grid>

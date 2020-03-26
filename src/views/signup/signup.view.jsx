@@ -49,7 +49,7 @@ if(token !== null){
                         <Grid xs={12} item container justify="center">
                             <Grid item>
                                 <Box width={441}>
-                                    <Typography id='msgTxt' style={{ fontWeight: "bold" }} align="center" variant="body1">
+                                    <Typography id='msgTxt' style={{ fontWeight: "bold", fontSize: "25px", color: "#0094FF" }} align="center">
                                         Take only memories, leave only footprints
                                     </Typography>
                                 </Box>

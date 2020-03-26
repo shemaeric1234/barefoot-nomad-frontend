@@ -13,7 +13,6 @@ class App extends Component {
 					<Switch>
 						<Route path='/auth' component={DefaultLayout} />
 						<PrivateRoute path='/' component={MainLayout} />
-
 					</Switch>
 				</Router>
 			</div>

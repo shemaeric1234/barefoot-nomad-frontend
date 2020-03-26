@@ -14,6 +14,6 @@ describe('Render main layout', () => {
 		expect(wrapper.find('div').length).toBe(4);
 		expect(wrapper.find('main').length).toBe(1);
 		expect(wrapper.find('Switch').length).toBe(1);
-		expect(wrapper.find('Route').length).toBe(12);
+		expect(wrapper.find('Route').length).toBeGreaterThan(12);
 	});
 });
