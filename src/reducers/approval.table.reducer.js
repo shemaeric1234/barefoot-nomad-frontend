@@ -1,6 +1,7 @@
 const initialState = {
 	tripRequests: [],
 	trip: [],
+	count: 0,
 	tripRequestsError: '',
 	successMessage: false,
 	errorMessage: false,

@@ -5,6 +5,7 @@ import {
 	editTripRequestStatus,
 	setSelectedTripRequestAction,
 	closeErrorMessageAlert,
+	SearchTripRequests,
 } from '../../src/actions/approval.table';
 import moxios from 'moxios';
 import axios from 'axios';
@@ -144,6 +145,35 @@ describe('approval table test', () => {
 				expect(result).toEqual(expectation);
 			});
 	});
+
+	it('should search trip requests managed by manager', async () => {
+		const middlewares = [thunk];
+		const mockStore = configureMockStore(middlewares);
+		moxios.wait(() => {
+			const request = moxios.requests.mostRecent();
+			request.respondWith({
+				status: 200,
+				message: 'success',
+				response: {
+					data: {
+						count: 2,
+						data: { tripRequests: [] },
+					},
+				},
+			});
+		});
+
+		const expectation = 'GET_TRIP_REQUESTS_SUCCESS';
+
+		const myStore = mockStore({});
+		await myStore
+			.dispatch(SearchTripRequests({ target: { value: '0' } }))
+			.then(async () => {
+				const result = myStore.getActions();
+				expect(result[0].type).toEqual(expectation);
+			});
+	});
+
 	it('should get selected trip', async () => {
 		const middlewares = [thunk];
 		const mockStore = configureMockStore(middlewares);
@@ -191,5 +221,29 @@ describe('approval table test', () => {
 			const result = newStore.getActions();
 			expect(result).toEqual(expectation);
 		});
+	});
+
+	it('should fail to search manager trip request', async () => {
+		const middlewares = [thunk];
+		const mockStore = configureMockStore(middlewares);
+		moxios.wait(() => {
+			const request = moxios.requests.mostRecent();
+			request.respondWith({
+				status: 400,
+				message: 'fail',
+				response: {},
+			});
+		});
+
+		const expectation = [
+			{ type: 'GET_TRIP_REQUESTS_FAIL', tripRequestsError: true },
+		];
+		const newStore = mockStore({});
+		await newStore
+			.dispatch(SearchTripRequests({ target: 'value' }))
+			.then(async () => {
+				const result = newStore.getActions();
+				expect(result).toEqual(expectation);
+			});
 	});
 });

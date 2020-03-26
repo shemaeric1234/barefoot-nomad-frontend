@@ -123,6 +123,47 @@ describe('Render trip request ui', () => {
 		const finalDeleteBtn = wrapper.find('#finalDeleteBtn').simulate('click');
 		expect(finalDeleteBtn).toBeTruthy();
 	});
+	it('should render all components successfully with not return date and manager name', () => {
+		const secondProps = [
+			{
+				id: 0,
+				origin: 'Kigali',
+				destination: 'Kincasa',
+				tripId: 'b4c99c41-9d2a-42f1-9a4c-65111d48e0d4',
+				tripTripId: 2,
+				tripType: 'one way',
+				status: 'approved',
+				accomodation: 'fgfghftjghv',
+				departureDate: '2020-09-12T00:00:00.000Z',
+				returnDate: '2020-02-01T22:00:00.000Z',
+				createdAt: '2020-02-19T19:58:30.638Z',
+				manager: null,
+			},
+		];
+		shallow(
+			<MuiThemeProvider theme={theme}>
+				<Provider store={store}>
+					<Request
+						trip={secondProps}
+						history={{ push: jest.fn() }}
+						user={user}
+					/>
+				</Provider>
+			</MuiThemeProvider>,
+		);
+		const wrapper = shallow(
+			<Request
+				trip={secondProps}
+				history={{ push: jest.fn() }}
+				closeErrorMessageAlert={jest.fn()}
+				editTripRequestStatus={jest.fn()}
+				user={user}
+			/>,
+		);
+		let accept = wrapper.find('#accept').simulate('click');
+		accept = wrapper.find('#accept').simulate('click');
+		expect(accept).toBeTruthy();
+	});
 
 	it('should return collect trip type', () => {
 		expect(normalizeType('multi-city')).toEqual('Multiple cities trip');

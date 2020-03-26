@@ -1,6 +1,6 @@
-import React from "react";
-import { shallow, mount } from "enzyme";
-import { NavLinks } from "../../../../src/components/profile/Nav.links";
+import React from 'react';
+import { shallow, mount } from 'enzyme';
+import { NavLinks } from '../../../../src/components/profile/Nav.links';
 
 describe('Top navigation bar component', () => {
 	it('should render the top navigation bar  component successfully', () => {
@@ -55,8 +55,8 @@ describe('Top navigation bar component', () => {
 	it('should handle onclick event of make trip request link', () => {
 		const wrapper = shallow(<NavLinks />);
 		wrapper.setState({
-			open:true
-		})
+			open: true,
+		});
 		wrapper.find('#make-trip-request').simulate('click');
 		const location = wrapper.state().location;
 		expect(location).toBe('/make-trip-request');
@@ -64,8 +64,8 @@ describe('Top navigation bar component', () => {
 	it('should handle onclick event of approvals table link', () => {
 		const wrapper = shallow(<NavLinks />);
 		wrapper.setState({
-			role:'manager'
-		})
+			role: 'manager',
+		});
 		wrapper.find('#approval_table').simulate('click');
 		const location = wrapper.state().location;
 		expect(location).toBe('/approval-table');
@@ -79,12 +79,11 @@ describe('Top navigation bar component', () => {
 	});
 	it('should handle onclick event of accommodations link', () => {
 		const wrapper = shallow(<NavLinks />);
-		wrapper.setState({role:'admin'});
+		wrapper.setState({ role: 'admin' });
 		wrapper.find('#accommodations').simulate('click');
 		const location = wrapper.state().location;
 		expect(location).toBe('/create-accommodations');
 	});
-
 
 	it('should handle onclick event of dashboard link', () => {
 		const wrapper = shallow(<NavLinks />);
@@ -92,5 +91,14 @@ describe('Top navigation bar component', () => {
 		wrapper.find('#dashboard').simulate('click');
 		const location = wrapper.state().location;
 		expect(location).toBe('/');
+	});
+	it('should handle onclick event of trips link', () => {
+		const wrapper = shallow(<NavLinks />);
+		window.location.pathname = '/user/user-role-setting';
+		wrapper.setState({ role: 'admin' });
+		wrapper.setState({ open: true });
+		wrapper.find('#trips').simulate('click');
+		const location = wrapper.state().location;
+		expect(location).toBe('/trips');
 	});
 });

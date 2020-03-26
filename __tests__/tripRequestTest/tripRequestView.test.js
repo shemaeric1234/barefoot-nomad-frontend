@@ -47,7 +47,7 @@ const setUpEditTrip = (initialState = {}) => {
 
 describe('Trip Request component tests', () => {
 	it('should render successfully all breaks found in Trip Request view page', () => {
-		const wrapper = shallow(<TripRequest />);
+		const wrapper = shallow(<TripRequest error={true} />);
 		expect(wrapper.find('br').length).toBe(1);
 	});
 

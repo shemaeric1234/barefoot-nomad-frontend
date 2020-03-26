@@ -103,7 +103,7 @@
     "query-string": "^6.10.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-horizontal-scrolling-menu": "^0.7.6",
+    "react-horizontal-scrolling-menu": "^0.7.7",
     "react-infinite-scroll-component": "^5.0.4",
     "react-items-carousel": "^2.8.0",
     "react-material-ui-form-validator": "^2.0.10",

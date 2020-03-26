@@ -142,7 +142,7 @@ export const Request = props => {
 						<Typography
 							style={{ fontSize: 14, color: '#616161' }}
 							variant='h3'
-						>{`${props.trip[0].manager.firstName} ${props.trip[0].manager.lastName}`}</Typography>
+						>{`${props.trip[0].firstName} ${props.trip[0].lastName}`}</Typography>
 					</Box>
 					<Typography style={{ fontSize: 14, color: '#616161' }} variant='h3'>
 						{props.trip.length > 0

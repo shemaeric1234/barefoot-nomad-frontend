@@ -16,8 +16,10 @@ describe('Render Activate user view', () => {
 				isLoading: false,
 			},
 		});
-
-		mount(<ActivateUser isLoading={true} />);
+		const props = {
+			hasRequestMade: false,
+		};
+		mount(<ActivateUser isLoading={true} props={props} />);
 		mount(<ActivateUser isLoading={false} />);
 	});
 });

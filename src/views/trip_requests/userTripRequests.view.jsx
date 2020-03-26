@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,9 +12,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { Box, Hidden, Grid, Card, CardContent } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUserTripRequestsAction } from '../../actions/requests/tripRequestsAction';
+import {
+	getUserTripRequestsAction,
+	SearchTripRequests,
+} from '../../actions/requests/tripRequestsAction';
 import Moment from 'react-moment';
 import { setSelectedTripRequestAction } from '../../actions/requests/tripRequestsAction';
 
@@ -93,6 +101,32 @@ export const Requests = props => {
 
 	return (
 		<Paper>
+			{props.trips.length > 0 && (
+				<Grid container justify='center'>
+					<Grid xs={11} xl={6} ms={6} item>
+						<FormControl
+							style={{ width: '99%' }}
+							className={clsx(classes.margin, classes.textField)}
+							variant='outlined'
+						>
+							<OutlinedInput
+								style={{ backgroundColor: '#F1F1F1', border: '0px' }}
+								id='outlined_adornment_weight'
+								onChange={e => props.SearchTripRequests(e)}
+								startAdornment={
+									<InputAdornment position='start'>
+										<SearchIcon />
+									</InputAdornment>
+								}
+								aria-describedby='outlined-weight-helper-text'
+								inputProps={{
+									'aria-label': 'search',
+								}}
+							/>
+						</FormControl>
+					</Grid>
+				</Grid>
+			)}
 			<Toolbar>
 				<Typography variant='h6' id='tableTitle'>
 					My Trip Requests
@@ -341,4 +375,5 @@ export const mapStateToProps = state => {
 export default connect(mapStateToProps, {
 	getUserTripRequestsAction,
 	setSelectedTripRequestAction,
+	SearchTripRequests,
 })(withRouter(Requests));
