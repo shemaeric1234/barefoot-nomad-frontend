@@ -1,6 +1,7 @@
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import { signIn, logout, history, USER_SIGNIN_SUCCESS, USER_SIGNIN_FAILURE } from '../../src/actions/signInAction'
+import { signIn, history, USER_SIGNIN_SUCCESS, USER_SIGNIN_FAILURE } from '../../src/actions/signInAction'
+import { logout } from '../../src/actions/logoutAction'
 import moxios from 'moxios'
 import axios from 'axios'
 import expect from 'expect' 

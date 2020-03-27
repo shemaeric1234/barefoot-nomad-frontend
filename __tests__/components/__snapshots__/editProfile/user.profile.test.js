@@ -5,6 +5,7 @@ import {
 	UserProfile,
 	mapStateToProps,
 } from '../../../../src/components/profile/userProfile';
+import { JestEnvironment } from '@jest/environment';
 
 describe('user profile component', () => {
 	it('should render the user profile  component successfully', () => {
@@ -17,5 +18,19 @@ describe('user profile component', () => {
 			NotificationReducer: { Notifications: [] },
 		};
 		expect(mapStateToProps(initState)).toBeDefined();
+	});
+	it('should handle onclick logout button', () => {
+		const wrapper = shallow(<UserProfile {...props} />);
+		wrapper.setProps({
+			logout: jest.fn(),
+		});
+		wrapper.setState({
+			logout: false,
+		});
+		wrapper
+			.find('WithStyles(ForwardRef(ListItem))')
+			.props()
+			.onClick();
+		expect(wrapper.state('logout')).toEqual(true);
 	});
 });

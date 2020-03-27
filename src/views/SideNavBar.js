@@ -1,6 +1,5 @@
 import React from 'react';
 import UserProfile from '../components/profile/userProfile.jsx';
-import Navlinks from '../components/profile/Nav.links.jsx';
 import { Box } from '@material-ui/core';
 
 export default function SideNavBarPage() {
@@ -14,7 +13,6 @@ export default function SideNavBarPage() {
 				/>
 			</div>
 			<UserProfile />
-			<Navlinks />
 		</Box>
 	);
 }

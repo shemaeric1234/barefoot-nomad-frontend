@@ -6,7 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Box, Container, Link } from '@material-ui/core';
 import Footer from '../common/footer';
 import { connect } from 'react-redux';
-import { signIn, logout, history } from '../../actions/signInAction';
+import { signIn, history } from '../../actions/signInAction';
+import { logout } from '../../actions/logoutAction';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { formUseStyles } from '../../styles/login/loginStyle.js';
 import SocialAuth from '../auth/SocialLogin.jsx';
@@ -131,8 +132,8 @@ export class LoginForm extends Component {
 									Sign In
 								</Button>
 							) : (
-									<CircularProgress />
-								)}
+								<CircularProgress />
+							)}
 							<Typography variant='h6' color='textSecondary'>
 								{' '}
 								Or{' '}
