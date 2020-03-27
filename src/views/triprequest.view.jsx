@@ -395,10 +395,7 @@ export class TripRequest extends Component {
 		return (
 			<Box style={Object.assign({}, styles.root)}>
 				<Toolbar>
-					<Typography variant='h6' id='tableTitle'>
-						{this.state.trip ? 'Edit' : 'Create'} Trip Request
-					</Typography>{' '}
-					{this.props.tripCreated && !this.state.trip &&(
+					{this.props.tripCreated && !this.state.trip && (
 						<Snackbar
 							open={this.state.open}
 							autoHideDuration={3000}
@@ -435,7 +432,7 @@ export class TripRequest extends Component {
 							</Alert>
 						</Snackbar>
 					)}
-					{this.props.error && !this.state.trip  && (
+					{this.props.error && !this.state.trip && (
 						<Snackbar
 							open={this.state.open}
 							autoHideDuration={3000}

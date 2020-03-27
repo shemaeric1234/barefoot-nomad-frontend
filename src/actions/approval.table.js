@@ -7,6 +7,7 @@ export const EDIT_TRIPREQUEST_STATUS_SUCCESS =
 	'EDIT_TRIPREQUEST_STATUS_SUCCESS';
 export const EDIT_TRIPREQUEST_STATUS_FAIL = 'EDIT_TRIPREQUEST_STATUS_FAIL';
 export const MAKE_OPEN_MODEL_TO_FALSE = 'MAKE_OPEN_MODEL_TO_FALSE';
+export const SEARCH_TRIP_REQUESTS_FAIL = 'SEARCH_TRIP_REQUESTS_FAIL';
 
 config();
 export const getTripRequests = props => async dispatch => {
@@ -20,7 +21,6 @@ export const getTripRequests = props => async dispatch => {
 			`${process.env.BACKEND_BASE_URL}/api/v1/trip-requests/?page=${props.page}&limit=${props.limit}`,
 			{ headers },
 		);
-
 		dispatch({
 			type: GET_TRIP_REQUESTS_SUCCESS,
 			tripRequests: results.data.data,
@@ -50,7 +50,7 @@ export const SearchTripRequests = e => async dispatch => {
 			tripRequests: data,
 		});
 	} catch (error) {
-		dispatch({ type: GET_TRIP_REQUESTS_FAIL, tripRequestsError: true });
+		dispatch({ type: SEARCH_TRIP_REQUESTS_FAIL, searchError: true });
 	}
 };
 

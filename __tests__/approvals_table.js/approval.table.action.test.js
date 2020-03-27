@@ -236,7 +236,7 @@ describe('approval table test', () => {
 		});
 
 		const expectation = [
-			{ type: 'GET_TRIP_REQUESTS_FAIL', tripRequestsError: true },
+			{ type: 'SEARCH_TRIP_REQUESTS_FAIL', searchError: true },
 		];
 		const newStore = mockStore({});
 		await newStore

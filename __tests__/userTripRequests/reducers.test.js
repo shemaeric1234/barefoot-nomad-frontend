@@ -51,6 +51,7 @@ describe('User trip requests reducer tests', () => {
 			],
 			trip: {},
 			myTripsCount: 1,
+			searchError: false,
 		});
 	});
 	it('shoult set selected trip request', () => {
@@ -166,24 +167,29 @@ describe('User trip requests reducer tests', () => {
 	it('shoult update trip request', () => {
 		const result = tripRequestReducers(
 			{
-				myTrips: [[{
-					id: 1,
-					origin: 'Kigali',
-					destination: 'Kincasa',
-					tripId: 'b4c99c41-9d2a-42f1-9a4c-65111d48e0d4',
-					tripTripId: 2,
-					tripType: 'one way',
-					status: 'pending',
-					accomodation: 'fgfghftjghv',
-					departureDate: '2020-09-12T00:00:00.000Z',
-					returnDate: '2020-02-01T22:00:00.000Z',
-					createdAt: '2020-02-19T19:58:30.638Z',
-					manager: {
-						firstName: 'Dominique',
-						lastName: 'Nsengimana',
-					},
-					booking: []
-				}]], trip: {}
+				myTrips: [
+					[
+						{
+							id: 1,
+							origin: 'Kigali',
+							destination: 'Kincasa',
+							tripId: 'b4c99c41-9d2a-42f1-9a4c-65111d48e0d4',
+							tripTripId: 2,
+							tripType: 'one way',
+							status: 'pending',
+							accomodation: 'fgfghftjghv',
+							departureDate: '2020-09-12T00:00:00.000Z',
+							returnDate: '2020-02-01T22:00:00.000Z',
+							createdAt: '2020-02-19T19:58:30.638Z',
+							manager: {
+								firstName: 'Dominique',
+								lastName: 'Nsengimana',
+							},
+							booking: [],
+						},
+					],
+				],
+				trip: {},
 			},
 			{
 				type: 'UPDATE_TRIP_BOOKING_INFO',
@@ -191,34 +197,51 @@ describe('User trip requests reducer tests', () => {
 					id: 1,
 					accomodation: 'fgfghftjghv',
 					name: 'kdkkd',
-					roomid: 324
+					roomid: 324,
 				},
 			},
 		);
 		expect(result).toEqual({
-			myTrips: [[{
-				id: 1,
-				origin: 'Kigali',
-				destination: 'Kincasa',
-				tripId: 'b4c99c41-9d2a-42f1-9a4c-65111d48e0d4',
-				tripTripId: 2,
-				tripType: 'one way',
-				status: 'pending',
-				accomodation: 'fgfghftjghv',
-				departureDate: '2020-09-12T00:00:00.000Z',
-				returnDate: '2020-02-01T22:00:00.000Z',
-				createdAt: '2020-02-19T19:58:30.638Z',
-				manager: {
-					firstName: 'Dominique',
-					lastName: 'Nsengimana',
-				},
-				booking: [{
-					id: 1,
-					accomodation: 'fgfghftjghv',
-					name: 'kdkkd',
-					roomid: 324
-				}]
-			}]], trip: {}
+			myTrips: [
+				[
+					{
+						id: 1,
+						origin: 'Kigali',
+						destination: 'Kincasa',
+						tripId: 'b4c99c41-9d2a-42f1-9a4c-65111d48e0d4',
+						tripTripId: 2,
+						tripType: 'one way',
+						status: 'pending',
+						accomodation: 'fgfghftjghv',
+						departureDate: '2020-09-12T00:00:00.000Z',
+						returnDate: '2020-02-01T22:00:00.000Z',
+						createdAt: '2020-02-19T19:58:30.638Z',
+						manager: {
+							firstName: 'Dominique',
+							lastName: 'Nsengimana',
+						},
+						booking: [
+							{
+								id: 1,
+								accomodation: 'fgfghftjghv',
+								name: 'kdkkd',
+								roomid: 324,
+							},
+						],
+					},
+				],
+			],
+			trip: {},
 		});
+	});
+
+	it('search should fail to get trip request', () => {
+		const getState = tripRequestReducers(
+			{ myTrips: [], searchError: false },
+			{ type: 'SEARCH_TRIP_REQUESTS_FAIL', searchError: true },
+		);
+		console.log('getState:', getState);
+
+		expect(getState).toEqual({ myTrips: [], searchError: true });
 	});
 });

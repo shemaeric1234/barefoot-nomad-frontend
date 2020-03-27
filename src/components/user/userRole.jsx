@@ -36,8 +36,7 @@ import Moment from 'react-moment';
 import verifyToken from '../../helpers/tokenHelper';
 import { log } from 'util';
 import { Toolbar } from '@material-ui/core';
-import Footer from "../common/footer";
-
+import Footer from '../common/footer';
 
 export const history = createBrowserHistory({
 	forceRefresh: true,
@@ -154,12 +153,6 @@ export class UserRoleSetting extends Component {
 			);
 		return (
 			<div className={classes.root}>
-				<Toolbar>
-					<Typography variant='h6' id='tableTitle'>
-						User Role Settings
-					</Typography>
-				</Toolbar>
-
 				<Modal
 					aria-labelledby='simple-modal-title'
 					aria-describedby='simple-modal-description'
@@ -236,7 +229,7 @@ export class UserRoleSetting extends Component {
 										.slice(
 											this.state.page * this.state.rowsPerPage,
 											this.state.page * this.state.rowsPerPage +
-											this.state.rowsPerPage,
+												this.state.rowsPerPage,
 										)
 										.map((row, index) => {
 											return (
@@ -321,7 +314,7 @@ export class UserRoleSetting extends Component {
 							.slice(
 								this.state.page * this.state.rowsPerPage,
 								this.state.page * this.state.rowsPerPage +
-								this.state.rowsPerPage,
+									this.state.rowsPerPage,
 							)
 							.map((row, index) => {
 								return (
@@ -379,7 +372,6 @@ export class UserRoleSetting extends Component {
 																getOptionLabel={option => option.role}
 																defaultValue={roles[3].role}
 																onChange={(e, value) => {
-																	
 																	if (row.role === 'manager') {
 																		this.setState({
 																			openModal: true,
@@ -486,8 +478,8 @@ export class UserRoleSetting extends Component {
 									update
 								</Button>
 							) : (
-									<CircularProgress />
-								)}
+								<CircularProgress />
+							)}
 						</Grid>
 						<Hidden mdDown>
 							<Grid item xs={5}>
@@ -504,7 +496,7 @@ export class UserRoleSetting extends Component {
 						</Hidden>
 					</Grid>
 				</Paper>
-				<Footer /> 
+				<Footer />
 			</div>
 		);
 	}

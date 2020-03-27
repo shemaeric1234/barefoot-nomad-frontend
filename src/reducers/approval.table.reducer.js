@@ -6,6 +6,7 @@ const initialState = {
 	successMessage: false,
 	errorMessage: false,
 	message: '',
+	searchError: false,
 };
 const approvalsTableReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -16,11 +17,17 @@ const approvalsTableReducer = (state = initialState, action) => {
 				tripRequests: [...data],
 				tripRequestsError: '',
 				count: action.tripRequests.count,
+				searchError: false,
 			};
 		case 'GET_TRIP_REQUESTS_FAIL':
 			return {
 				...state,
 				tripRequestsError: action.tripRequestsError,
+			};
+		case 'SEARCH_TRIP_REQUESTS_FAIL':
+			return {
+				...state,
+				searchError: action.searchError,
 			};
 		case 'SET_SELLECTED_TRIP':
 			return {

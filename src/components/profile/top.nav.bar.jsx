@@ -46,7 +46,7 @@ export class TopNavBar extends Component {
 		return (
 			<>
 				{notifications && (
-					<Box width={100 / 100} display='flex' justifyContent='flex-end'>
+					<Box width={30 / 100} display='flex' justifyContent='flex-end'>
 						<Box pr={1} style={{ marginTop: '10px' }}>
 							<img
 								src='https://res.cloudinary.com/dby88h516/image/upload/v1580893608/email_1_jupvlq.svg'

@@ -95,8 +95,8 @@ export const Requests = props => {
 		return status === 'pending'
 			? '#FBBC05'
 			: status === 'approved'
-				? '#34A853'
-				: '#E10050';
+			? '#34A853'
+			: '#E10050';
 	};
 
 	return (
@@ -113,6 +113,7 @@ export const Requests = props => {
 								style={{ backgroundColor: '#F1F1F1', border: '0px' }}
 								id='outlined_adornment_weight'
 								onChange={e => props.SearchTripRequests(e)}
+								placeholder='Search by attribute like names,status, return date etc...'
 								startAdornment={
 									<InputAdornment position='start'>
 										<SearchIcon />
@@ -128,9 +129,7 @@ export const Requests = props => {
 				</Grid>
 			)}
 			<Toolbar>
-				<Typography variant='h6' id='tableTitle'>
-					My Trip Requests
-				</Typography>
+				<Typography variant='h6' id='tableTitle'></Typography>
 			</Toolbar>
 			<Box style={{ display: showTable ? 'block' : 'none' }}>
 				<Hidden mdDown>
@@ -160,59 +159,69 @@ export const Requests = props => {
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{props.trips.map((row, index) => {
-									if (row.length > 0) {
-										return (
-											<TableRow
-												id='tableRow'
-												hover
-												onClick={event => handleClick(props, row)}
-												role='checkbox'
-												tabIndex={-1}
-												key={index}
-											>
-												<TableCell align='left'>{row[0].origin}</TableCell>
-												<TableCell align='right'>
-													{row[0].destination}
-												</TableCell>
-												<TableCell align='right'>{row[0].tripType}</TableCell>
-												<TableCell
-													align='right'
-													style={{
-														color: row.length ? statusColor(row[0].status) : '',
-													}}
+								{props.searchError ? (
+									<TableRow>
+										<TableCell colSpan={7} align='center'>
+											{'Ooops ! No related record found'}
+										</TableCell>
+									</TableRow>
+								) : (
+									props.trips.map((row, index) => {
+										if (row.length > 0) {
+											return (
+												<TableRow
+													id='tableRow'
+													hover
+													onClick={event => handleClick(props, row)}
+													role='checkbox'
+													tabIndex={-1}
+													key={index}
 												>
-													{row[0].status}
-												</TableCell>
-												<TableCell align='right'>
-													{row[0].accomodation}
-												</TableCell>
-												<TableCell align='right'>
-													{`${row[0].departureDate}` != 'null' ? (
-														<Moment format='D MMM YYYY'>
-															{row[0].departureDate}
-														</Moment>
-													) : (
+													<TableCell align='left'>{row[0].origin}</TableCell>
+													<TableCell align='right'>
+														{row[0].destination}
+													</TableCell>
+													<TableCell align='right'>{row[0].tripType}</TableCell>
+													<TableCell
+														align='right'
+														style={{
+															color: row.length
+																? statusColor(row[0].status)
+																: '',
+														}}
+													>
+														{row[0].status}
+													</TableCell>
+													<TableCell align='right'>
+														{row[0].accomodation}
+													</TableCell>
+													<TableCell align='right'>
+														{`${row[0].departureDate}` != 'null' ? (
+															<Moment format='D MMM YYYY'>
+																{row[0].departureDate}
+															</Moment>
+														) : (
 															'-'
 														)}
-												</TableCell>
-												<TableCell align='right'>
-													{`${row[0].returnDate}` != 'null' ? (
-														<Moment format='D MMM YYYY'>
-															{row[0].returnDate}
-														</Moment>
-													) : (
+													</TableCell>
+													<TableCell align='right'>
+														{`${row[0].returnDate}` != 'null' ? (
+															<Moment format='D MMM YYYY'>
+																{row[0].returnDate}
+															</Moment>
+														) : (
 															'-'
 														)}
-												</TableCell>
-											</TableRow>
-										);
-									} else {
-										if (showTable) {
-											setShowTable(false);
+													</TableCell>
+												</TableRow>
+											);
+										} else {
+											if (showTable) {
+												setShowTable(false);
+											}
 										}
-									}
-								})}
+									})
+								)}
 							</TableBody>
 						</Table>
 					</TableContainer>
@@ -292,8 +301,8 @@ export const Requests = props => {
 														{item[0].departureDate != null ? (
 															<Moment format='D MMM YYYY'>{`${item[0].departureDate}`}</Moment>
 														) : (
-																'-'
-															)}
+															'-'
+														)}
 													</Grid>
 												</Grid>
 												<Grid item container justify='space-between'>
@@ -310,8 +319,8 @@ export const Requests = props => {
 																{item[0].returnDate}
 															</Moment>
 														) : (
-																'-'
-															)}
+															'-'
+														)}
 													</Grid>
 												</Grid>
 											</Grid>
@@ -369,6 +378,7 @@ export const mapStateToProps = state => {
 	return {
 		trips: state.tripRequestsReducers.myTrips,
 		count: state.tripRequestsReducers.myTripsCount,
+		searchError: state.tripRequestsReducers.searchError,
 	};
 };
 

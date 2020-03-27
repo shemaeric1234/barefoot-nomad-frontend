@@ -1,5 +1,5 @@
 const getUserTripRequestsReducer = (
-	state = { myTrips: [], trip: [], myTripsCount: 0 },
+	state = { myTrips: [], trip: [], myTripsCount: 0, searchError: false },
 	action,
 ) => {
 	switch (action.type) {
@@ -8,6 +8,7 @@ const getUserTripRequestsReducer = (
 				...state,
 				myTrips: action.payload.requestTrips,
 				myTripsCount: action.payload.count,
+				searchError: false,
 			};
 		case 'SET_SELLECTED_TRIP':
 			return {
@@ -22,16 +23,23 @@ const getUserTripRequestsReducer = (
 		case 'UPDATE_TRIP_BOOKING_INFO':
 			return {
 				...state,
-				myTrips: [...state.myTrips.map(item => {
-					return item.map(trip => {
-						if (trip.id == action.payload.id) {
-							trip.accomodation = action.payload.accomodation;
-							trip.booking.push(action.payload);
-						}
-						return trip;
-					})
-				})],
-			}
+				myTrips: [
+					...state.myTrips.map(item => {
+						return item.map(trip => {
+							if (trip.id == action.payload.id) {
+								trip.accomodation = action.payload.accomodation;
+								trip.booking.push(action.payload);
+							}
+							return trip;
+						});
+					}),
+				],
+			};
+		case 'SEARCH_TRIP_REQUESTS_FAIL':
+			return {
+				...state,
+				searchError: action.searchError,
+			};
 		default:
 			return state;
 	}

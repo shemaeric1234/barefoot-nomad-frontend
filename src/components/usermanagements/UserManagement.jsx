@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import lodash from 'lodash'
+import lodash from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import {
 	getUsersManagers,
 	getManagers,
 	updateUserManager,
-	onChangeState
+	onChangeState,
 } from '../../actions/userManagementAction';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -31,7 +31,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Toolbar } from '@material-ui/core';
 import { Styles } from '../../styles/userManagementStyles';
 import Footer from '../common/footer';
-
 
 export class UserManagement extends Component {
 	state = {
@@ -64,7 +63,6 @@ export class UserManagement extends Component {
 		this.setState({ page: newPage });
 	};
 
-
 	handleChangeRowsPerPage = event => {
 		this.setState({ rowsPerPage: +event.target.value });
 		this.setState({ page: 0 });
@@ -84,14 +82,18 @@ export class UserManagement extends Component {
 		return option.firstName;
 	};
 
-
 	handleOnChangeLabel = (e, value, user) => {
-		this.props.onChangeState(this.props.userData, { id: user.id, manager: `${(!value) ? '' : value.firstName} ${(!value) ? '' : value.lastName}` });
+		this.props.onChangeState(this.props.userData, {
+			id: user.id,
+			manager: `${!value ? '' : value.firstName} ${
+				!value ? '' : value.lastName
+			}`,
+		});
 		const found = this.state.usersToUpdate.find(row => row.userId === user.id);
 		if (found) {
-			lodash.remove(this.state.usersToUpdate, (users) => {
+			lodash.remove(this.state.usersToUpdate, users => {
 				return users.userId === user.id;
-			})
+			});
 		}
 		if (user && value) {
 			this.setState({
@@ -117,7 +119,10 @@ export class UserManagement extends Component {
 	filterManager = (managers, currentUser) => {
 		const userManager = [];
 		managers.map(manager => {
-			if (manager.firstName + ' ' + manager.lastName !== currentUser.manager && manager.id !== currentUser.id) {
+			if (
+				manager.firstName + ' ' + manager.lastName !== currentUser.manager &&
+				manager.id !== currentUser.id
+			) {
 				userManager.push(manager);
 			}
 		});
@@ -135,11 +140,6 @@ export class UserManagement extends Component {
 		const { classes, userData, managerData } = this.props;
 		return (
 			<div className={classes.root}>
-				<Toolbar>
-					<Typography variant='h6' id='tableTitle'>
-						Assign Users to managers
-					</Typography>
-				</Toolbar>
 				<Snackbar
 					open={this.state.open}
 					autoHideDuration={3000}
@@ -176,64 +176,55 @@ export class UserManagement extends Component {
 										))}
 									</TableRow>
 								</TableHead>
-								<TableBody>{userData
-									.slice(
-										this.state.page * this.state.rowsPerPage,
-										this.state.page * this.state.rowsPerPage +
-										this.state.rowsPerPage,
-									)
-
-									.map((user, index) => {
-										return (
-											<TableRow
-												hover
-												role='checkbox'
-												tabIndex={-1}
-												key={user.id}
-											>
-												<TableCell align='center'>
-													{user.firstName}
-												</TableCell>
-												<TableCell align='center'>
-													{user.lastName}
-												</TableCell>
-												<TableCell align='center'>{user.email}</TableCell>
-												<TableCell align='center'>{user.role}</TableCell>
-												<TableCell align='center'>
-													<Autocomplete
-														id={managerData.id}
-														options={this.filterManager(
-															managerData,
-															user,
-														)}
-														name={'value'}
-														className='getOption'
-														getOptionLabel={option =>
-															this.handleOptionLabel(option)
-														}
-
-														value={{ firstName: `${user.manager} ` }}
-														style={{ fontSize: '5px' }}
-														onChange={(e, value) =>
-															this.handleOnChangeLabel(e, value, user)
-
-														}
-														renderInput={params => {
-															return (
-																<TextField
-																	{...params}
-																	label={'Assign a manager'}
-																	margin='normal'
-																	fullWidth
-																/>
-															);
-														}}
-													/>
-												</TableCell>
-											</TableRow>
+								<TableBody>
+									{userData
+										.slice(
+											this.state.page * this.state.rowsPerPage,
+											this.state.page * this.state.rowsPerPage +
+												this.state.rowsPerPage,
 										)
-									})}
 
+										.map((user, index) => {
+											return (
+												<TableRow
+													hover
+													role='checkbox'
+													tabIndex={-1}
+													key={user.id}
+												>
+													<TableCell align='center'>{user.firstName}</TableCell>
+													<TableCell align='center'>{user.lastName}</TableCell>
+													<TableCell align='center'>{user.email}</TableCell>
+													<TableCell align='center'>{user.role}</TableCell>
+													<TableCell align='center'>
+														<Autocomplete
+															id={managerData.id}
+															options={this.filterManager(managerData, user)}
+															name={'value'}
+															className='getOption'
+															getOptionLabel={option =>
+																this.handleOptionLabel(option)
+															}
+															value={{ firstName: `${user.manager} ` }}
+															style={{ fontSize: '5px' }}
+															onChange={(e, value) =>
+																this.handleOnChangeLabel(e, value, user)
+															}
+															renderInput={params => {
+																return (
+																	<TextField
+																		{...params}
+																		label={'Assign a manager'}
+																		margin='normal'
+																		fullWidth
+																	/>
+																);
+															}}
+														/>
+													</TableCell>
+												</TableRow>
+											);
+										})}
 								</TableBody>
 							</Table>
 						</TableContainer>
@@ -246,7 +237,7 @@ export class UserManagement extends Component {
 							.slice(
 								this.state.page * this.state.rowsPerPage,
 								this.state.page * this.state.rowsPerPage +
-								this.state.rowsPerPage,
+									this.state.rowsPerPage,
 							)
 							.map((user, index) => {
 								return (
@@ -323,7 +314,8 @@ export class UserManagement extends Component {
 																value={{ firstName: `${user.manager} ` }}
 																style={{ fontSize: '5px' }}
 																onChange={(e, value) =>
-																	this.handleOnChangeLabel(e, value, user)}
+																	this.handleOnChangeLabel(e, value, user)
+																}
 																renderInput={params => (
 																	<TextField
 																		{...params}
@@ -415,13 +407,9 @@ const mapStateToProps = state => {
 	};
 };
 
-
-export default connect(
-	mapStateToProps,
-	{
-		updateUserManager,
-		getUsersManagers,
-		getManagers,
-		onChangeState
-	}
-)(withStyles(Styles)(UserManagement));
+export default connect(mapStateToProps, {
+	updateUserManager,
+	getUsersManagers,
+	getManagers,
+	onChangeState,
+})(withStyles(Styles)(UserManagement));

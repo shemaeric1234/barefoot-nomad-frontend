@@ -48,6 +48,22 @@ describe('approvals table test', () => {
 			{ tripRequests: [] },
 			getTripRequestsSuccess,
 		);
-		expect(getState).toEqual({ tripRequests: [[], []], tripRequestsError: '' });
+		expect(getState).toEqual({
+			tripRequests: [[], []],
+			tripRequestsError: '',
+			count: undefined,
+			searchError: false,
+		});
+	});
+	it('search should fail to get trip request', () => {
+		const getState = ApprovalTable(
+			{ tripRequests: [], searchError: false },
+			{ type: 'SEARCH_TRIP_REQUESTS_FAIL', searchError: true },
+		);
+		expect(getState).toEqual({ tripRequests: [], searchError: true });
+	});
+	it('should get default value', () => {
+		const getState = ApprovalTable({ tripRequests: [] }, {});
+		expect(getState).toEqual({ tripRequests: [] });
 	});
 });

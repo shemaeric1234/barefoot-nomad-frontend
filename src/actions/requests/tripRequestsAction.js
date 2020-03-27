@@ -46,7 +46,7 @@ export const SearchTripRequests = e => async dispatch => {
 			payload: data,
 		});
 	} catch (error) {
-		dispatch({ type: 'GET_USER_TRIP_REQUESTS_FAILED', payload: true });
+		dispatch({ type: 'SEARCH_TRIP_REQUESTS_FAIL', searchError: true });
 		dispatch({ type: 'LOADING', payload: false });
 	}
 };
