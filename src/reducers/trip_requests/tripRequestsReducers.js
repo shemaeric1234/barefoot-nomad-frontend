@@ -1,5 +1,11 @@
 const getUserTripRequestsReducer = (
-	state = { myTrips: [], trip: [], myTripsCount: 0, searchError: false },
+	state = {
+		myTrips: [],
+		trip: [],
+		myTripsCount: 0,
+		searchError: false,
+		tripToEdit: [],
+	},
 	action,
 ) => {
 	switch (action.type) {

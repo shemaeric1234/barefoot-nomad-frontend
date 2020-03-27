@@ -175,9 +175,10 @@ export class NotificatonPane extends Component {
 												<Grid
 													id='trip_requests'
 													className='notification'
-													onClick={() =>
-														history.push(`trip-requests/${option.requestId}`)
-													}
+													onClick={() => {
+														markNotificationAsRead(option.id);
+														history.push(`trips/${option.subjectId}`);
+													}}
 													item
 													xs={8}
 													md={8}
@@ -273,7 +274,10 @@ export class NotificatonPane extends Component {
 export const mapStateToProps = state => {
 	return {
 		notifications: state.NotificationReducer.Notifications,
-		NotificationError: state.NotificationReducer.NotificationError,
+		NotificationError:
+			state.NotificationReducer.Notifications.length === 0
+				? "Oooops ! you don't have notification yet"
+				: state.NotificationReducer.NotificationError,
 		markNotificationAsReadErrorMessage:
 			state.NotificationReducer.markNotificationAsReadErrorMessage,
 		modal: state.NotificationReducer.open,

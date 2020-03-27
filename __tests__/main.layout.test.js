@@ -53,7 +53,7 @@ describe('Render main layout', () => {
 			.first()
 			.simulate('close');
 		const Route = wrapper.find('Route');
-		expect(wrapper.find('div').length).toBe(62);
+		expect(wrapper.find('div').length).toBe(70);
 		expect(wrapper.find('main').length).toBe(1);
 		expect(wrapper.find('Switch').length).toBe(1);
 		expect(wrapper.find('Route').length).toBeGreaterThan(0);

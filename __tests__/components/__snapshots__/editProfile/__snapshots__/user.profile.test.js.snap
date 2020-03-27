@@ -69,7 +69,7 @@ exports[`user profile component should render the user profile  component succes
       </Styled(MuiBox)>
     </Link>
   </Styled(MuiBox)>
-  <WithStyles(withRouter(NavLinks)) />
+  <Connect(WithStyles(withRouter(NavLinks))) />
   <Styled(MuiBox)
     marginTop={1}
   >

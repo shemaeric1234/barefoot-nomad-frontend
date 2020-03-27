@@ -21,6 +21,7 @@ import {
 	editTripRequestStatus,
 	closeErrorMessageAlert,
 } from '../../actions/approval.table';
+import { setSelectedTripRequestAction } from '../../actions/requests/tripRequestsAction';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
@@ -68,7 +69,10 @@ export const Request = props => {
 		if (logenInUser.payload.role !== 'manager') {
 			props.history.push('/trips');
 		}
-	});
+		props.setSelectedTripRequestAction([
+			{ tripId: window.location.pathname.split('/')[2] },
+		]);
+	}, []);
 	const [open, setOpen] = React.useState(false);
 	const [data, setData] = React.useState({});
 	const [message, setMessage] = React.useState();
@@ -404,9 +408,13 @@ export const mapStateToProps = state => {
 	return {
 		trips: state.approvalsTableReducer.tripRequests,
 		trip:
-			state.tripRequestsReducers.trip.length === 0
+			state.tripRequestsReducers.tripToEdit.length === 0
 				? initialTrip
-				: state.tripRequestsReducers.trip,
+				: state.tripRequestsReducers.tripToEdit,
+		// trip:
+		// 	state.tripRequestsReducers.trip.length === 0
+		// 		? initialTrip
+		// 		: state.tripRequestsReducers.trip,
 		user: state.userProfileReducer.userProfileInfo,
 		successModal: state.approvalsTableReducer.successMessage,
 		failModel: state.approvalsTableReducer.errorMessage,

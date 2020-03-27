@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const handleClick = (props, trip) => {
-	props.history.push(`/trips/${trip[0].id}`);
+	props.history.push(`/trips/${trip[0].tripId}`);
 	props.setSelectedTripRequestAction(trip);
 };
 
