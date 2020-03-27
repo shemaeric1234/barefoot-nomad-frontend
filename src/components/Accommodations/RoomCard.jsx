@@ -77,6 +77,7 @@ export class RoomCard extends Component {
 							options={this.props.AcccommodationTypes}
 							className={classes.Autocomplete}
 							getOptionLabel={option => option.name}
+							style={{ width: 300 }}
 							onChange={(e, value) => {
 								const name = 'typeId';
 								this.props.handleChangeRooms(
@@ -120,6 +121,7 @@ export class RoomCard extends Component {
 							data-test='currency-field'
 							getOptionLabel={option => option.name}
 							className={classes.Autocomplete}
+							style={{ width: 300 }}
 							onChange={(e, value) => {
 								const name = 'currency';
 								this.props.handleChangeRooms(

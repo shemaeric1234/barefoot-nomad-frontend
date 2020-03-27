@@ -1,3 +1,4 @@
+  
 export const Styles = theme => ({
 	root: {
 		width: '100%',
@@ -11,7 +12,6 @@ export const Styles = theme => ({
 		width: '433.09px',
 		minHeight: '495.38px',
 		marginLeft: '30%',
-		padding:"50px ",
 
 		['@media (max-width:1024px)']: {
 			marginLeft: '0%',
@@ -25,7 +25,6 @@ export const Styles = theme => ({
 		minWidth: '433.09px',
 		minHeight: '495.38px',
 		marginLeft: '30%',
-		padding:"50px ",
 
 		['@media (max-width:1024px)']: {
 			marginLeft: '0',
@@ -38,7 +37,7 @@ export const Styles = theme => ({
 		},
 	},
 	inputField: {
-		width: '100%',
+		width: '300px',
 		height: '40px',
 	},
 	inputFieldAmenities: {
@@ -50,7 +49,7 @@ export const Styles = theme => ({
 		width: '112px',
 		height: '41px',
 		['@media (min-width:151px) and (max-width:1280px)']: {
-			marginLeft: '0%',
+			marginLeft: '-56%',
 			width: '153.09px',
 		},
 		['@media (min-width:800px) and (max-width:1285px)']: {
@@ -62,12 +61,14 @@ export const Styles = theme => ({
 		  },
 	},
 	Form: {
+		marginLeft: '15%',
 		['@media (max-width:1025px)']: {
-			marginLeft: '13%',
+			marginLeft: '5%',
 		},
 
 	},
 	RoomForm: {
+		marginLeft: '15%',
 		marginTop: '5%',
 		['@media (max-width:1280px)']: {
 			marginLeft: '13%',
@@ -75,6 +76,9 @@ export const Styles = theme => ({
 	},
 	AmenitiesForm: {
 		marginLeft: '11%',
+		['@media (max-width:1025px)']: {
+			marginLeft: '3%',
+		},
 	},
 	button: {
 		boxShadow: 'none',
@@ -102,6 +106,11 @@ export const Styles = theme => ({
 	Typography: {
 		marginLeft: '8%',
 		display: 'inline-block',
+	},
+	title:{
+		['@media (max-width:1025px)']: {
+			marginLeft: '-17%',
+		},
 	},
 	Chip: {
 		marginLeft: '8%',
@@ -148,5 +157,4 @@ export const Styles = theme => ({
 			marginLeft: '694px',
 		},
 	},
-
 });
